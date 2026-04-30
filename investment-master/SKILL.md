@@ -1,5 +1,6 @@
 ---
 name: investment-master
+license: MIT
 description: |
   整合7位投资大师的完整思维体系：巴菲特(Warren Buffett)、彼得·林奇(Peter Lynch)、菲利普·费雪(Philip Fisher)、查理·芒格(Charlie Munger)、霍华德·马克斯(Howard Marks)、段永平、雷·达利欧(Ray Dalio)。触发场景：分析股票/公司、评估投资机会、解读财报/年报/股东信、评估商业护城河/竞争优势、买卖持有决策、市场周期分析、管理层质量评估、PEG估值、成长股分析、闲聊法(scuttlebutt)研究、逆向思维、认知偏差检查、周期定位、风险管理、逆向投资、本分哲学、Stop Doing List、经济机器模型、债务周期、全天候策略、多大师对比分析、投资决策、仓位建议、行业分析、美股分析、港股分析、美股财报、港股财报、SEC filings、AH股对比。即使用户未提及"投资大师"，凡涉及投资分析、多视角评估、买卖决策、投资哲学比较时，均应主动触发。支持A股、美股、港股三市场分析。
 ---
