@@ -1,6 +1,10 @@
-# Investment Master — 七大师 × 道·理·法·术 投资分析体系
+# Stock Invest Master — 七大师 × 道·理·法·术 投资分析体系
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Clawhub](https://img.shields.io/badge/Platform-Clawhub-blue.svg)](https://clawhub.com)
 
 > 整合7位投资大师的完整思维体系与"道·理·法·术"四层分析框架的结构化投资分析工具。
+> 分析报告自动保存为 Markdown 格式至 `~/.stock-invest-master/` 目录。
 
 ## 概述
 
@@ -46,64 +50,92 @@
 | 🎯 **段永平** | 本分哲学 + Stop Doing List + 睡得着觉 | "做对的事情，把事情做对" |
 | 🌊 **达利欧** (Ray Dalio) | 经济机器 + 债务周期 + 全天候策略 | "理解因果，系统化决策" |
 
+## 报告输出
+
+每次分析完成后，报告自动保存为 Markdown 格式：
+
+```
+~/.stock-invest-master/yyyymmdd_X公司.md
+```
+
+**示例：**
+- `~/.stock-invest-master/20260509_腾讯.md`
+- `~/.stock-invest-master/20260509_Apple.md`
+- `~/.stock-invest-master/20260509_茅台_quick.md`（快速筛选）
+- `~/.stock-invest-master/20260509_腾讯_v2.md`（同日第二次分析）
+
 ## 项目结构
 
 ```
-invest-master/
-├── README.md                          # 项目说明文档
-├── investment-master/
-│   ├── SKILL.md                       # 核心技能文件（整合版）
+stock-invest-master/
+├── README.md                              # 项目说明文档
+├── LICENSE                                # MIT 开源协议
+├── stock-invest-master/
+│   ├── SKILL.md                           # 核心技能文件（整合版）
 │   ├── scripts/
-│   │   ├── extract_stock_data.py      # 股票数据结构化提取脚本
-│   │   └── fetch_us_stock.py          # 美股数据获取脚本
+│   │   ├── extract_stock_data.py          # 股票数据结构化提取脚本
+│   │   └── fetch_us_stock.py              # 美股数据获取脚本
 │   └── references/
-│       ├── buffett-framework.md       # 巴菲特分析框架
-│       ├── lynch-framework.md         # 林奇分析框架
-│       ├── fisher-framework.md        # 费雪分析框架
-│       ├── munger-framework.md        # 芒格分析框架
-│       ├── marks-framework.md         # 马克斯分析框架
-│       ├── duan-framework.md          # 段永平分析框架
-│       └── dalio-framework.md         # 达利欧分析框架
+│       ├── buffett-framework.md           # 巴菲特分析框架
+│       ├── lynch-framework.md             # 林奇分析框架
+│       ├── fisher-framework.md            # 费雪分析框架
+│       ├── munger-framework.md            # 芒格分析框架
+│       ├── marks-framework.md             # 马克斯分析框架
+│       ├── duan-framework.md              # 段永平分析框架
+│       └── dalio-framework.md             # 达利欧分析框架
 ```
 
-## 使用方式
+## 安装与使用
 
-### 作为 Hermes Agent 技能
+### 方式一：作为 Hermes Agent 技能
 
-将本项目作为 Hermes Agent 的技能使用：
-
-1. 克隆到技能目录：
 ```bash
-git clone https://github.com/mickshu/invest-master.git ~/.hermes/skills/investment-master
+git clone https://github.com/mickshu/stock-invest-master.git ~/.hermes/skills/stock-invest-master
+mkdir -p ~/.stock-invest-master
 ```
 
-2. 分析股票时，Agent 会自动加载该技能
+### 方式二：发布到 Clawhub 平台
 
-### 分析流程
+本项目已适配 Clawhub 技能平台，可通过以下方式安装：
+
+```bash
+# 通过 clawhub CLI 安装（如平台支持）
+clawhub install mickshu/stock-invest-master
+
+# 或手动克隆
+git clone https://github.com/mickshu/stock-invest-master.git
+```
+
+### 分析报告示例
+
+```
+请求: 分析腾讯00700.HK
+
+→ Agent 加载 stock-invest-master 技能
+→ 执行市场识别、数据检索
+→ 道·理·法·术 四层评估 + 七大师交叉验证
+→ 生成完整 Markdown 报告
+→ 保存至 ~/.stock-invest-master/20260509_腾讯.md
+→ 在终端输出报告摘要
+```
+
+## 分析流程
 
 ```
 第一步：市场识别（A股/美股/港股）
   ↓
 第二步：统一20问快速筛选
-  ↓
-第三步（通过筛选后）：
-  道 → 理 → 法 → 术 逐层分析
+  ↓ (通过)
+第三步：道 → 理 → 法 → 术 逐层分析
   每层注入对应大师视角
   ↓
 第四步：七大师共识结论
   ↓
 第五步：违背"道·法"专项诊断
   ↓
-最终：投资建议 + 监控指标
+第六步：保存报告至 ~/.stock-invest-master/
+  文件名: yyyymmdd_X公司.md
 ```
-
-### 数据源支持
-
-| 市场 | 主要数据源 | 补充数据源 |
-|------|-----------|-----------|
-| 🇨🇳 A股 | neodata-financial-search | finance-data-retrieval, WebSearch |
-| 🇺🇸 美股 | MCP financial-datasets | finance-data-retrieval, neodata, WebSearch |
-| 🇭🇰 港股 | neodata-financial-search | finance-data-retrieval, WebSearch |
 
 ## 核心特性
 
@@ -121,27 +153,28 @@ git clone https://github.com/mickshu/invest-master.git ~/.hermes/skills/investme
 - 一致度高 → 高信心决策
 - 分歧较大 → 深入调查分歧原因
 
-### 3. 违背专项诊断
+### 3. 自动报告保存
+
+分析完成后自动生成 Markdown 格式报告：
+- 完整的四层评估 + 七大师共识
+- 违背"道·法"专项诊断
+- 关键假设、风险、监控指标
+- 数据来源与校验声明
+- 保存到 `~/.stock-invest-master/` 目录
+
+### 4. 违背专项诊断
 
 专门针对不符合投资基本原则的公司进行深度诊断：
 - 6项自动否决红旗（财务造假、管理层失信等）
 - 道层面6项违背检查
 - 法层面5项违背检查
 
-### 4. 三市场覆盖
+### 5. 三市场覆盖
 
 支持 A股、美股、港股 三大市场，每种市场有专门的数据源和分析考量：
 - A股：neodata + finance-data-retrieval
 - 美股：MCP financial-datasets + finance-data-retrieval（含SEC filings）
 - 港股：neodata + finance-data-retrieval（含AH股溢价分析）
-
-### 5. 数据质量保障
-
-8条数据质量规则确保分析准确性：
-- 一只一查，禁止批量混查
-- 关键数值交叉校验（PE ≈ PB/ROE）
-- 结构化提取脚本避免人工错误
-- 市场特有注意事项（美股财年、港股红利税等）
 
 ## 快速筛选（20问）
 
@@ -156,19 +189,6 @@ git clone https://github.com/mickshu/invest-master.git ~/.hermes/skills/investme
 | E. 认知与决策 | 4 | 逆向思维、认知偏差、机会成本、太难测试 |
 
 **自动否决规则**：Q11（管理层诚信）= 否 → 无论其他多好，自动否决
-
-## 输出模板
-
-完整分析输出包含：
-1. 道·理·法·术 四层评估（每层：遵循/偏离/大师视角/小结）
-2. 七大师独立判断表
-3. 违背"道·法"专项诊断
-4. 关键假设与风险
-5. 监控指标
-6. Stop Doing 检查
-7. 七大师卖出标准逐项检查
-8. 七大师总体评估（每位大师以第一人称输出）
-9. 数据来源与校验声明
 
 ## 适用场景
 
@@ -186,11 +206,20 @@ git clone https://github.com/mickshu/invest-master.git ~/.hermes/skills/investme
 | `dcf-model` | 互补 | 在"法"层估值时调用 |
 | `comps-analysis` | 互补 | 在"法"层估值时调用 |
 | `3-statement-model` | 互补 | 在"理"层财务分析时调用 |
-| `stock-dao-analysis` | 已整合 | 本框架已整合道法术分析 |
 
 ## License
 
-MIT
+本项目采用 MIT 协议开源。详见 [LICENSE](LICENSE) 文件。
+
+## Clawhub 发布说明
+
+本项目遵循 Clawhub 技能规范：
+
+- 标准 `SKILL.md` 格式，包含 YAML frontmatter（name, version, license, description）
+- MIT 开源协议
+- 结构化 references 目录存放参考文档
+- scripts 目录存放辅助脚本
+- 自包含，无外部依赖（除标准数据源 API）
 
 ## 致谢
 
