@@ -2,10 +2,9 @@
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![ClawHub](https://img.shields.io/badge/Platform-ClawHub-blue.svg)](https://clawhub.ai/mickshu/stock-invest-master)
-[![Version](https://img.shields.io/badge/version-3.0.0-green.svg)](https://github.com/mickshu/stock-invest-master)
+[![Version](https://img.shields.io/badge/version-3.2.0-green.svg)](https://github.com/mickshu/stock-invest-master)
 
-> 整合10位投资大师的完整思维体系与"志·道·势·法·术·器"六层分析框架的结构化投资分析工具。
-> 分析报告自动保存为 Markdown 格式至 `~/.stock-invest-master/` 目录。
+> 解密全球顶尖投资大师逻辑，AI驱动投资逻辑。融合格雷厄姆、巴菲特、段永平、林奇等十位顶级大师投资理论，构建从顶层"志·道"到落地"术·器"的立体多层次分析矩阵。支持A股、港股、美股市场股票分析，AI时代的最强"投资大脑"。分析报告自动保存为 Markdown 格式至 `~/.stock-invest-master/` 目录。
 
 > ⚠️ **投资免责申明**：本工具仅供学习和参考，不构成任何投资建议。所有投资决策由用户自行承担风险。
 
