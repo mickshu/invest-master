@@ -1,9 +1,9 @@
 ---
 name: stock-invest-master
-version: 3.6.0
+version: 3.7.0
 license: MIT
 description: |
-  解密全球顶尖投资大师逻辑，AI驱动投资逻辑。融合格雷厄姆、巴菲特、段永平、林奇等十位顶级大师投资理论，构建从顶层"志·道"到落地"术·器"的立体多层次分析矩阵。支持A股、港股、美股市场股票分析，AI时代的最强"投资大脑"。分析报告自动保存为 Markdown 格式至~/.stock-invest-master/目录，并提供Web浏览服务(http://127.0.0.1:8888)。报告包含可视化概览卡片、客观数据支撑（重大事件/13F/资金流向）和核心风险深度分析。
+  股票投资分析技能。分析任何股票/公司/基金/ETF的投资价值，支持A股、港股、美股。适用场景：个股分析、公司估值、财报解读、行业研究、投资决策、基本面分析、技术面分析、风险评估、资金流向、13F机构持仓、南北向资金、内部人交易、买入卖出建议、投资大师视角（格雷厄姆/巴菲特/芒格/段永平/林奇/费雪/索罗斯/马克斯/达利欧/西蒙斯）、价值投资、成长股分析、价值股筛选、PE/PB/ROE估值、DCF估值、PEG估值、护城河分析、安全边际计算、财务健康检查、盈利质量分析、现金流分析、分红派息、融资融券、期权做空数据、分析师评级。触发关键词：股票、分析、估值、投资、买入、卖出、财报、 AAPL、腾讯、茅台、NVDA、TSLA、GOOGL、MSFT、00700.HK、600519.SH、港股通、北向资金、南向资金、机构持仓、SEC filing、10-K、10-Q、13F、insider trading、融资融券、earnings report、revenue、profit margin、free cash flow、ROE、ROIC、PE ratio、PB ratio、DCF model、margin of safety、moat、valuation、stock analysis、company analysis、is X stock a good buy、should I invest in、financial health、risk assessment、market trend、sector analysis。报告自动保存至~/.stock-invest-master/，提供Web浏览服务(http://127.0.0.1:8888)。
 ---
 
 # Stock Invest Master — 十大师 × 志·道·势·法·术·器 投资分析体系
@@ -63,6 +63,22 @@ description: |
 
 > **读取参考文件：** 使用 Read 工具，路径 = 加载技能时显示的 `Base directory` + `/references/filename`。
 > **文件必须在分析前实际读取——不得以内置知识替代。**
+
+### 可用参考文件
+
+| 文件 | 内容 |
+|------|------|
+| `references/a-stock-data-retrieval.md` | A股数据检索指南：腾讯/新浪/东方财富API可用端点、字段映射、交叉校验 |
+| `references/graham-framework.md` | 格雷厄姆安全边际+内在价值 |
+| `references/buffett-framework.md` | 巴菲特能力圈+护城河 |
+| `references/lynch-framework.md` | 林奇PEG+六类分类 |
+| `references/fisher-framework.md` | 费雪15点+闲聊法 |
+| `references/munger-framework.md` | 芒格逆向思维+心智模型 |
+| `references/marks-framework.md` | 马克斯周期+第二层次思维 |
+| `references/duan-framework.md` | 段永平本分+Stop Doing |
+| `references/dalio-framework.md` | 达利欧债务周期+全天候 |
+| `references/soros-framework.md` | 索罗斯反身性 |
+| `references/simons-framework.md` | 西蒙斯量化模型 |
 
 ---
 
@@ -911,10 +927,20 @@ Step 6: 决策（内在价值 vs 当前价/安全边际/机会成本）
 - 赛道/公司/价格三维度的星级评分（1-5星）
 - 投资评级、目标价位、安全边际
 - 核心风险等级
-- 关键财务数据快照（PE、ROE、资金流向等）
+- 关键财务数据快照（PE、ROE、营收净利+同比增速、总市值等）
+- 三大现金流：经营现金流(+/-)、投资现金流(+/-)、融资现金流(+/-)，用红绿+-区分
 - 十大师共识投票分布
-- 格式：PNG/JPG，宽度约 800px，保存至 `~/.stock-invest-master/yyyymmdd_公司_overview.png`
+- 格式：PNG/JPG，宽度约 840px，保存至 `~/.stock-invest-master/yyyymmdd_公司_overview.png`
 - 报告中以 `![报告速览](yyyymmdd_公司_overview.png)` 插入
+
+**生成流程：**
+1. 使用 `templates/overview_card_template.html` 作为基础模板
+2. 填充实际数据（替换所有 `[占位符]`）
+3. 写入 `~/.stock-invest-master/overview_card_vX.html`
+4. 通过 `browser_navigate` 打开本地 HTML 文件（file:// 协议）
+5. 通过 `browser_vision` 截图，保存为 `~/.stock-invest-master/yyyymmdd_公司_overview.png`
+6. **关键**：HTML 必须加载 Google Fonts Noto Sans SC（CDN）以确保中文渲染正确
+7. 将图片文件名写入报告的"报告速览"模块
 
 ---
 
