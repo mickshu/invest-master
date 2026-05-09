@@ -1,6 +1,6 @@
 ---
 name: stock-invest-master
-version: 3.7.0
+version: 3.7.1
 license: MIT
 description: |
   股票投资分析技能。分析任何股票/公司/基金/ETF的投资价值，支持A股、港股、美股。适用场景：个股分析、公司估值、财报解读、行业研究、投资决策、基本面分析、技术面分析、风险评估、资金流向、13F机构持仓、南北向资金、内部人交易、买入卖出建议、投资大师视角（格雷厄姆/巴菲特/芒格/段永平/林奇/费雪/索罗斯/马克斯/达利欧/西蒙斯）、价值投资、成长股分析、价值股筛选、PE/PB/ROE估值、DCF估值、PEG估值、护城河分析、安全边际计算、财务健康检查、盈利质量分析、现金流分析、分红派息、融资融券、期权做空数据、分析师评级。触发关键词：股票、分析、估值、投资、买入、卖出、财报、 AAPL、腾讯、茅台、NVDA、TSLA、GOOGL、MSFT、00700.HK、600519.SH、港股通、北向资金、南向资金、机构持仓、SEC filing、10-K、10-Q、13F、insider trading、融资融券、earnings report、revenue、profit margin、free cash flow、ROE、ROIC、PE ratio、PB ratio、DCF model、margin of safety、moat、valuation、stock analysis、company analysis、is X stock a good buy、should I invest in、financial health、risk assessment、market trend、sector analysis。报告自动保存至~/.stock-invest-master/，提供Web浏览服务(http://127.0.0.1:8888)。
