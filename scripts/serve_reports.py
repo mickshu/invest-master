@@ -37,11 +37,8 @@ BROWSABLE_EXTENSIONS = {
     ".xml",
     ".json",
     ".yaml", ".yml",
-    ".log",
     # Images (served directly by browser)
     ".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp", ".ico",
-    # Code (viewable as text)
-    ".py", ".js", ".css", ".sh", ".bash", ".sql", ".conf", ".cfg", ".ini",
 }
 
 # Extensions to highlight in directory listing
@@ -133,7 +130,7 @@ class ReportServer(SimpleHTTPRequestHandler):
             self.serve_static(full_path, "application/xml")
         elif full_path.endswith((".yaml", ".yml")):
             self.serve_static(full_path, "text/yaml")
-        elif full_path.endswith((".txt", ".text", ".log")):
+        elif full_path.endswith((".txt", ".text", ".log", ".py", ".js", ".css", ".sh", ".bash", ".sql", ".conf", ".cfg", ".ini")):
             self.serve_text(full_path)
         elif full_path.endswith((".png", ".jpg", ".jpeg", ".gif", ".svg", ".webp")):
             self.serve_image(full_path)
