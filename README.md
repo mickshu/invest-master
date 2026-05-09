@@ -1,56 +1,46 @@
-# Stock Invest Master — 七大师 × 道·理·法·术 投资分析体系
+# Stock Invest Master — 十大师 × 志·道·势·法·术·器 投资分析体系
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Clawhub](https://img.shields.io/badge/Platform-Clawhub-blue.svg)](https://clawhub.com)
+[![ClawHub](https://img.shields.io/badge/Platform-ClawHub-blue.svg)](https://clawhub.ai/mickshu/stock-invest-master)
+[![Version](https://img.shields.io/badge/version-3.0.0-green.svg)](https://github.com/mickshu/stock-invest-master)
 
-> 整合7位投资大师的完整思维体系与"道·理·法·术"四层分析框架的结构化投资分析工具。
+> 整合10位投资大师的完整思维体系与"志·道·势·法·术·器"六层分析框架的结构化投资分析工具。
 > 分析报告自动保存为 Markdown 格式至 `~/.stock-invest-master/` 目录。
 
-> ⚠️ **投资免责申明**：本工具仅供学习和参考，不构成任何投资建议。所有投资决策由用户自行承担风险。详细内容见 SKILL.md 中的完整免责申明。
+> ⚠️ **投资免责申明**：本工具仅供学习和参考，不构成任何投资建议。所有投资决策由用户自行承担风险。
 
 ## 概述
 
 本项目将两大互补的投资分析框架整合为一体：
 
-1. **道·理·法·术四层框架** — 源自中国传统哲学的纵向递进分析结构
-2. **七位投资大师思维体系** — 横向多视角交叉验证
+1. **志·道·势·法·术·器 六层框架** — 从投资心性到量化工具的全维度递进结构
+2. **十位投资大师思维体系** — 横向多视角交叉验证
 
-### 框架关系
+### 六层分析框架
 
-```
-                    道 → 理 → 法 → 术
-                    ↓     ↓     ↓     ↓
-              [巴菲特] [费雪] [林奇] [七大师操作]
-              [段永平] [林奇] [马克斯]
-              [芒格  ]      [达利欧]
-```
+| 层次 | 核心问题 | 对应大师 | 权重 |
+|------|---------|---------|------|
+| **志** | 我的投资信仰是什么？心性是否成熟？ | 格雷厄姆+巴菲特+段永平 | 心性基石 |
+| **道** | 这笔投资的底层逻辑是什么？ | 巴菲特+芒格+格雷厄姆 | 定性基石 |
+| **势** | 市场趋势和周期处于什么阶段？ | 索罗斯+马克斯+达利欧 | 时机判断 |
+| **法** | 如何系统化地判断值不值得投？ | 林奇+费雪+格雷厄姆 | 流程+方法 |
+| **术** | 具体怎么操作？仓位如何管理？ | 索罗斯+十大师标准 | 技术+执行 |
+| **器** | 用什么工具和技术来辅助决策？ | 西蒙斯+技术工具 | 工具+量化 |
 
-| 维度 | 道·理·法·术 | 七大师视角 |
-|------|------------|-----------|
-| 分析方向 | 纵向四层递进 | 横向七大师并行 |
-| 核心功能 | 结构化分析层级，防遗漏 | 多视角交叉验证，防偏见 |
-| 输出 | 每层遵循/偏离评估 | 每大师独立判断+共识 |
-
-### 投资层级详解
-
-| 层次 | 核心问题 | 对应大师视角 | 权重 |
-|------|---------|------------|------|
-| **道** | 这笔投资的底层逻辑是什么？ | 巴菲特(能力圈) + 段永平(本分) + 芒格(心智模型) | 定性基石 |
-| **理** | 这家公司为什么能赚钱？ | 巴菲特(护城河) + 费雪(15点) + 林奇(分类) | 定量+定性 |
-| **法** | 如何系统化地判断值不值得投？ | 林奇(PEG) + 马克斯(周期) + 达利欧(机器) | 流程+方法 |
-| **术** | 具体怎么操作？ | 七大师的买卖/仓位/时机标准 | 技术+执行 |
-
-## 七位投资大师
+### 十位投资大师
 
 | 大师 | 核心方法论 | 一句话精髓 |
 |------|-----------|-----------|
+| 📚 **格雷厄姆** (Benjamin Graham) | 安全边际 + 内在价值 + 定量分析 | "市场短期是投票机，长期是称重机" |
 | 🎩 **巴菲特** (Warren Buffett) | 能力圈 + 护城河 + 安全边际 | "风险来自不知道自己在做什么" |
 | 🏃 **林奇** (Peter Lynch) | 六类分类 + PEG + 两分钟演练 | "买你了解的" |
 | 🔬 **费雪** (Philip Fisher) | 15点选股 + 闲聊法 + 长期持有 | "如果买对了，几乎永远不卖" |
 | 🧠 **芒格** (Charlie Munger) | 逆向思维 + 心智模型格栅 + 认知偏差 | "以合理价格买伟大生意" |
 | 📊 **马克斯** (Howard Marks) | 周期定位 + 第二层次思维 + 风险聚焦 | "最危险的事是相信没有风险" |
-| 🎯 **段永平** | 本分哲学 + Stop Doing List + 睡得着觉 | "做对的事情，把事情做对" |
+| 🎯 **段永平** | 本分哲学 + Stop Doing List | "做对的事情，把事情做对" |
 | 🌊 **达利欧** (Ray Dalio) | 经济机器 + 债务周期 + 全天候策略 | "理解因果，系统化决策" |
+| 💥 **索罗斯** (George Soros) | 反身性理论 + 宏观对冲 + 泡沫识别 | "世界经济史是一部基于假象和谎言的连续剧" |
+| 🤖 **西蒙斯** (James Simons) | 量化模型 + 统计套利 + 机器学习 | "市场不是不可预测的，只是需要正确的模型" |
 
 ## 报告输出
 
@@ -70,55 +60,43 @@
 
 ```
 stock-invest-master/
-├── README.md                              # 项目说明文档
-├── LICENSE                                # MIT 开源协议
+├── README.md                                  # 项目说明文档
+├── LICENSE                                    # MIT 开源协议
 ├── stock-invest-master/
-│   ├── SKILL.md                           # 核心技能文件（整合版）
+│   ├── SKILL.md                               # 核心技能文件（v3.0.0）
 │   ├── scripts/
-│   │   ├── extract_stock_data.py          # 股票数据结构化提取脚本
-│   │   └── fetch_us_stock.py              # 美股数据获取脚本
+│   │   ├── extract_stock_data.py              # 股票数据结构化提取脚本
+│   │   └── fetch_us_stock.py                  # 美股数据获取脚本
 │   └── references/
-│       ├── buffett-framework.md           # 巴菲特分析框架
-│       ├── lynch-framework.md             # 林奇分析框架
-│       ├── fisher-framework.md            # 费雪分析框架
-│       ├── munger-framework.md            # 芒格分析框架
-│       ├── marks-framework.md             # 马克斯分析框架
-│       ├── duan-framework.md              # 段永平分析框架
-│       └── dalio-framework.md             # 达利欧分析框架
+│       ├── graham-framework.md                # 格雷厄姆：安全边际+内在价值
+│       ├── buffett-framework.md               # 巴菲特：能力圈+护城河
+│       ├── lynch-framework.md                 # 林奇：六类分类+PEG
+│       ├── fisher-framework.md                # 费雪：15点选股+闲聊法
+│       ├── munger-framework.md                # 芒格：逆向思维+认知偏差
+│       ├── marks-framework.md                 # 马克斯：周期定位
+│       ├── duan-framework.md                  # 段永平：本分哲学
+│       ├── dalio-framework.md                 # 达利欧：经济机器+债务周期
+│       ├── soros-framework.md                 # 索罗斯：反身性理论+宏观对冲
+│       └── simons-framework.md                # 西蒙斯：量化模型+统计套利
 ```
 
 ## 安装与使用
 
-### 方式一：作为 Hermes Agent 技能
+### 方式一：作为 OpenClaw 技能
+
+```bash
+# 通过 ClawHub 安装
+clawhub install stock-invest-master
+
+# 或通过 OpenClaw 安装
+openclaw skills install stock-invest-master
+```
+
+### 方式二：手动克隆
 
 ```bash
 git clone https://github.com/mickshu/stock-invest-master.git ~/.hermes/skills/stock-invest-master
 mkdir -p ~/.stock-invest-master
-```
-
-### 方式二：发布到 Clawhub 平台
-
-本项目已适配 Clawhub 技能平台，可通过以下方式安装：
-
-```bash
-# 通过 clawhub CLI 安装（如平台支持）
-clawhub install mickshu/stock-invest-master
-
-# 或手动克隆
-git clone https://github.com/mickshu/stock-invest-master.git
-```
-
-### 分析报告示例
-
-```
-请求: 分析腾讯00700.HK
-
-→ Agent 加载 stock-invest-master 技能
-→ 执行市场识别、数据检索
-→ 道·理·法·术 四层评估 + 七大师交叉验证
-→ 生成完整 Markdown 报告
-→ 保存至 ~/.stock-invest-master/20260509_腾讯.md
-→ 在终端输出报告摘要
 ```
 
 ## 分析流程
@@ -126,14 +104,14 @@ git clone https://github.com/mickshu/stock-invest-master.git
 ```
 第一步：市场识别（A股/美股/港股）
   ↓
-第二步：统一20问快速筛选
+第二步：25问快速筛选（志/道/势/法/术/器六层主题）
   ↓ (通过)
-第三步：道 → 理 → 法 → 术 逐层分析
+第三步：志 → 道 → 势 → 法 → 术 → 器 逐层分析
   每层注入对应大师视角
   ↓
-第四步：七大师共识结论
+第四步：十大师共识结论
   ↓
-第五步：违背"道·法"专项诊断
+第五步：违背"志·道·法"专项诊断
   ↓
 第六步：保存报告至 ~/.stock-invest-master/
   文件名: yyyymmdd_X公司.md
@@ -141,56 +119,63 @@ git clone https://github.com/mickshu/stock-invest-master.git
 
 ## 核心特性
 
-### 1. 四层递进分析
+### 1. 六层递进分析
 
-以"道·理·法·术"为骨架，从投资哲学到具体操作逐层深入：
-- **道不通过 → 停止分析**（底层逻辑错误，无论财务多好看都不投）
-- **理不通过 → 高度警惕**（基本面有问题，需道的极强理由才能继续）
-- **法不通过 → 等待**（价格不合适，等待安全边际出现）
-- **术不通过 → 调整操作计划**（择时/仓位需要优化）
+以"志·道·势·法·术·器"为骨架，从投资心性到量化工具逐层深入：
+- **志不通过 → 停止分析**（投资信仰错误，任何方法论都会失效）
+- **道不通过 → 停止分析**（底层逻辑错误，无论其余多好看都不投）
+- **势不通过 → 需谨慎**（时机不对，好公司也可能长期套牢）
+- **法不通过 → 等待**（价格不合适或缺乏研究）
+- **术不通过 → 调整操作计划**
+- **器不通过 → 数据/工具有问题，需核实**
 
-### 2. 七大师交叉验证
+### 2. 十大师交叉验证
 
-每层分析注入对应大师的视角，最终形成七大师独立判断和共识：
+每层分析注入对应大师的视角，最终形成十大师独立判断和共识：
 - 一致度高 → 高信心决策
 - 分歧较大 → 深入调查分歧原因
 
-### 3. 自动报告保存
+### 3. 反身性理论（索罗斯）
+
+新增索罗斯视角，识别市场中的反身性循环和泡沫：
+- 主流叙事识别
+- 假象与现实分析
+- 转折点判断
+- 索罗斯式仓位管理（试错→确认→加码）
+
+### 4. 量化分析（西蒙斯）
+
+新增西蒙斯视角，用统计方法验证投资结论：
+- 因子分析（价值/动量/质量/低波动/规模）
+- 统计显著性检验
+- 样本外回测验证
+- 过拟合防范
+
+### 5. 自动报告保存
 
 分析完成后自动生成 Markdown 格式报告：
-- 完整的四层评估 + 七大师共识
-- 违背"道·法"专项诊断
+- 完整的六层评估 + 十大师共识
+- 违背"志·道·法"专项诊断
 - 关键假设、风险、监控指标
 - 数据来源与校验声明
 - 保存到 `~/.stock-invest-master/` 目录
 
-### 4. 违背专项诊断
+### 6. 三市场覆盖
 
-专门针对不符合投资基本原则的公司进行深度诊断：
-- 6项自动否决红旗（财务造假、管理层失信等）
-- 道层面6项违背检查
-- 法层面5项违背检查
+支持 A股、美股、港股 三大市场，每种市场有专门的数据源和分析考量。
 
-### 5. 三市场覆盖
+## 快速筛选（25问）
 
-支持 A股、美股、港股 三大市场，每种市场有专门的数据源和分析考量：
-- A股：neodata + finance-data-retrieval
-- 美股：MCP financial-datasets + finance-data-retrieval（含SEC filings）
-- 港股：neodata + finance-data-retrieval（含AH股溢价分析）
+| 主题 | 问题数 | 关注点 | 主导大师 |
+|------|--------|--------|---------|
+| A. 志 — 投资信仰 | 4 | 价值信仰、风险认知、长期主义 | 格雷厄姆+巴菲特+段永平 |
+| B. 道 — 商业本质 | 5 | 能力圈、护城河、内在价值 | 巴菲特+芒格+格雷厄姆 |
+| C. 势 — 市场周期 | 4 | 反身性、周期定位、债务周期 | 索罗斯+马克斯+达利欧 |
+| D. 法 — 分析流程 | 5 | 盈利质量、安全边际、PEG | 林奇+费雪+格雷厄姆 |
+| E. 术 — 操作执行 | 3 | 仓位管理、卖出标准 | 索罗斯+十大师 |
+| F. 器 — 工具技术 | 4 | 量化验证、回测、统计显著性 | 西蒙斯 |
 
-## 快速筛选（20问）
-
-分析前先运行20个核心筛选问题，按5个主题分组：
-
-| 主题 | 问题数 | 关注点 |
-|------|--------|--------|
-| A. 商业本质 | 5 | 能力圈、护城河、定价权、简洁性、持久性 |
-| B. 财务与估值 | 5 | 盈利质量、债务安全、安全边际、PEG、增长潜力 |
-| C. 管理层与治理 | 3 | 诚信、对的事情、Stop Doing |
-| D. 市场环境与周期 | 3 | 周期位置、第二层次思维、范式阶段 |
-| E. 认知与决策 | 4 | 逆向思维、认知偏差、机会成本、太难测试 |
-
-**自动否决规则**：Q11（管理层诚信）= 否 → 无论其他多好，自动否决
+**自动否决规则**：Q18（管理层诚信）= 否 → 无论其他多好，自动否决
 
 ## 适用场景
 
@@ -200,6 +185,7 @@ git clone https://github.com/mickshu/stock-invest-master.git
 - 多视角交叉验证重要投资决策
 - 投资组合审查与再平衡
 - 市场周期分析与宏观判断
+- 量化策略验证与回测
 
 ## 与其他技能的协作
 
@@ -207,16 +193,25 @@ git clone https://github.com/mickshu/stock-invest-master.git
 |------|------|------|
 | `dcf-model` | 互补 | 在"法"层估值时调用 |
 | `comps-analysis` | 互补 | 在"法"层估值时调用 |
-| `3-statement-model` | 互补 | 在"理"层财务分析时调用 |
+| `3-statement-model` | 互补 | 在"法"层财务分析时调用 |
+
+## 版本历史
+
+| 版本 | 日期 | 主要变更 |
+|------|------|---------|
+| 3.0.0 | 2026-05-09 | 升级为六层框架(志·道·势·法·术·器)，新增格雷厄姆/索罗斯/西蒙斯三位大师，整合打法与大师理论 |
+| 2.1.0 | 2026-05-09 | 新增投资免责申明（7项声明） |
+| 2.0.0 | 2026-05-09 | 整合stock-dao-analysis到investment-master，重命名为stock-invest-master |
 
 ## License
 
 本项目采用 MIT 协议开源。详见 [LICENSE](LICENSE) 文件。
 
-## Clawhub 发布说明
+## ClawHub 发布说明
 
-本项目遵循 Clawhub 技能规范：
+本项目已发布到 ClawHub 平台：https://clawhub.ai/mickshu/stock-invest-master
 
+遵循 ClawHub 技能规范：
 - 标准 `SKILL.md` 格式，包含 YAML frontmatter（name, version, license, description）
 - MIT 开源协议
 - 结构化 references 目录存放参考文档
@@ -225,7 +220,8 @@ git clone https://github.com/mickshu/stock-invest-master.git
 
 ## 致谢
 
-本项目的知识体系源自七位投资大师的公开著作、演讲和访谈：
+本项目的知识体系源自十位投资大师的公开著作、演讲和访谈：
+- Benjamin Graham: 《聪明的投资者》《证券分析》
 - Warren Buffett: Berkshire Hathaway 股东信
 - Peter Lynch: 《彼得·林奇的成功投资》(One Up On Wall Street)
 - Philip Fisher: 《怎样选择成长股》(Common Stocks and Uncommon Profits)
@@ -233,5 +229,7 @@ git clone https://github.com/mickshu/stock-invest-master.git
 - Howard Marks: 《投资最重要的事》(The Most Important Thing) + Oaktree memo
 - 段永平: 公开演讲与雪球分享
 - Ray Dalio: 《原则》(Principles) + 《债务危机》(Big Debt Crises)
+- George Soros: 《金融炼金术》(The Alchemy of Finance)
+- James Simons: 《解读量化投资》(The Man Who Solved the Market)
 
-"道·理·法·术"框架源自中国传统哲学思想在现代投资分析中的应用。
+"志·道·势·法·术·器"框架源自中国传统哲学思想与现代投资理论的融合。
