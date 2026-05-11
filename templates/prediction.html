@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>预测涨幅分析报告</title>
+    <style>
+        :root{--bg:#0f1724;--card:#162032;--border:rgba(255,255,255,0.06);--text:#e2e8f0;--dim:#94a3b8;--accent:#38bdf8;--up:#ef4444;--down:#22c55e;--tag-bg:rgba(139,92,246,0.15);--tag-text:#a78bfa;}
+        *{margin:0;padding:0;box-sizing:border-box;}
+        body{font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif;background:var(--bg);color:var(--text);min-height:100vh;}
+        .container{max-width:1200px;margin:0 auto;padding:0 12px;}
+        .header{padding:14px 0;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:12px;}
+        .header a{color:var(--text);text-decoration:none;background:rgba(255,255,255,0.06);border:1px solid var(--border);padding:6px 12px;border-radius:8px;font-size:13px;}
+        .header a:hover{border-color:var(--accent);color:var(--accent);}
+        .header h1{font-size:18px;background:linear-gradient(90deg,var(--accent),#a78bfa);-webkit-background-clip:text;-webkit-text-fill-color:transparent;}
+        .controls{margin:12px 0;display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+        .controls label{color:var(--dim);font-size:13px;}
+        .controls select,.controls button{background:var(--card);border:1px solid var(--border);color:var(--text);padding:6px 10px;border-radius:8px;font-size:13px;cursor:pointer;}
+        .controls button.active{background:rgba(56,189,248,0.2);border-color:var(--accent);color:var(--accent);}
+        .controls .wl-link{color:var(--tag-text);text-decoration:underline;cursor:pointer;margin-left:auto;font-size:12px;}
+        .stats-row{display:flex;gap:8px;margin:12px 0;overflow-x:auto;padding-bottom:4px;flex-wrap:nowrap;}
+        .stat-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:12px 16px;min-width:120px;flex:1;text-align:center;}
+        .stat-card .label{font-size:11px;color:var(--dim);}
+        .stat-card .value{font-size:22px;font-weight:700;margin-top:4px;}
+        .stat-card .value.green{color:var(--down);}
+        .stat-card .value.red{color:var(--up);}
+        .stat-card .value.accent{color:var(--accent);}
+        .stat-card .value.purple{color:var(--tag-text);}
+        .section{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:16px;margin:12px 0;}
+        .section-title{font-size:14px;font-weight:600;margin-bottom:12px;color:var(--accent);}
+        .chart-box{width:100%;overflow-x:auto;}
+        .chart-box svg{display:block;width:100%;height:auto;}
+        .table-wrap{overflow-x:auto;}
+        table{width:100%;border-collapse:collapse;min-width:500px;}
+        th{padding:8px 6px;text-align:left;font-size:11px;color:var(--dim);font-weight:600;background:rgba(0,0,0,0.2);border-bottom:1px solid var(--border);}
+        td{padding:8px 6px;font-size:13px;border-bottom:1px solid var(--border);}
+        .up{color:var(--up);font-weight:600;}.down{color:var(--down);font-weight:600;}
+        .badge-acc{background:rgba(34,197,94,0.15);color:#22c55e;padding:2px 6px;border-radius:4px;font-size:11px;}
+        .badge-pend{background:rgba(250,204,21,0.15);color:#f59e0b;padding:2px 6px;border-radius:4px;font-size:11px;}
+        .badge-err{background:rgba(239,68,68,0.15);color:#ef4444;padding:2px 6px;border-radius:4px;font-size:11px;}
+        .algo-info{font-size:12px;color:var(--dim);padding:8px 0;}
+        .algo-info span{color:var(--accent);}
+        .stock-filter{display:flex;gap:6px;align-items:center;margin:12px 0;padding:10px 12px;background:var(--card);border:1px solid var(--border);border-radius:10px;}
+        .stock-filter input{flex:1;background:rgba(0,0,0,0.3);border:1px solid var(--border);color:var(--text);padding:8px 12px;border-radius:8px;font-size:13px;outline:none;}
+        .stock-filter input:focus{border-color:var(--accent);}
+        .stock-filter input::placeholder{color:var(--dim);}
+        .stock-filter .btn{background:var(--accent);color:var(--bg);border:none;padding:8px 16px;border-radius:8px;font-size:13px;cursor:pointer;font-weight:600;}
+        .stock-filter .btn:hover{opacity:0.85;}
+        .stock-filter .btn-clear{background:rgba(255,255,255,0.08);color:var(--dim);border:1px solid var(--border);}
+        .filter-result-info{font-size:12px;color:var(--dim);margin:8px 0;}
+        .not-found-tag{display:inline-block;background:rgba(239,68,68,0.15);color:#ef4444;padding:2px 8px;border-radius:4px;font-size:11px;margin:2px;}
+        /* 联想下拉 */
+        .autocomplete-wrap{position:relative;flex:1;}
+        .autocomplete-list{position:absolute;top:100%;left:0;right:0;background:var(--card);border:1px solid var(--border);border-radius:8px;max-height:200px;overflow-y:auto;z-index:100;display:none;}
+        .autocomplete-list.show{display:block;}
+        .autocomplete-item{padding:8px 12px;cursor:pointer;font-size:13px;border-bottom:1px solid var(--border);}
+        .autocomplete-item:last-child{border-bottom:none;}
+        .autocomplete-item:hover,.autocomplete-item.active{background:rgba(56,189,248,0.15);color:var(--accent);}
+        .autocomplete-item .ac-code{font-family:monospace;color:var(--dim);margin-right:8px;}
+        .autocomplete-item .ac-name{color:var(--text);}
+        /* 趋势图 */
+        .trend-section{display:none;}
+        .trend-section.show{display:block;}
+        .trend-header{display:flex;align-items:center;gap:12px;margin-bottom:12px;}
+        .trend-header .stock-name{font-size:15px;font-weight:600;color:var(--text);}
+        .trend-header .stock-code{font-family:monospace;color:var(--dim);font-size:13px;}
+        .trend-legend{display:flex;gap:16px;font-size:12px;color:var(--dim);}
+        .trend-legend .dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:4px;}
+        .loading{text-align:center;padding:40px;color:var(--dim);}
+        @media(max-width:600px){.header h1{font-size:15px;}.stat-card{min-width:90px;padding:8px;}.stat-card .value{font-size:17px;}}
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="/">← 返回排行</a>
+            <h1>预测涨幅分析报告</h1>
+        </div>
+        <div class="controls">
+            <label>日期：</label>
+            <select id="dateSelect"></select>
+            <button id="btnAll" class="active" onclick="setMode('all')">全量</button>
+            <button id="btnWl" onclick="setMode('watchlist')">自选股</button>
+            <span class="wl-link" onclick="window.location.href='/watchlist'">管理自选股</span>
+        </div>
+        <div class="stock-filter">
+            <div class="autocomplete-wrap">
+                <input type="text" id="stockCodeInput" placeholder="输入股票代码或名称，支持联想..." autocomplete="off" />
+                <div id="autocompleteList" class="autocomplete-list"></div>
+            </div>
+            <button class="btn" onclick="filterByStock()">筛选</button>
+            <button class="btn btn-clear" onclick="clearStockFilter()">清除</button>
+        </div>
+        <div id="filterResultInfo" class="filter-result-info" style="display:none;"></div>
+        <div id="trendSection" class="trend-section">
+            <div class="section">
+                <div class="trend-header">
+                    <span id="trendStockName" class="stock-name"></span>
+                    <span id="trendStockCode" class="stock-code"></span>
+                    <div class="trend-legend">
+                        <span><span class="dot" style="background:#38bdf8;"></span>预测值</span>
+                        <span><span class="dot" style="background:#f59e0b;"></span>实际值</span>
+                    </div>
+                </div>
+                <div class="chart-box" id="stockTrendChart"></div>
+            </div>
+        </div>
+        <div id="content"><div class="loading">加载分析数据...</div></div>
+    </div>
+    <script>
+        // State
+        let viewMode = "all";
+        let selectedDate = "";
+
+        function setMode(m) {
+            viewMode = m;
+            // Update buttons UI
+            document.getElementById("btnAll").className = "filter-btn " + (m === "all" ? "active" : "");
+            document.getElementById("btnWl").className = "filter-btn " + (m === "watchlist" ? "active" : "");
+            // Reload data for current date with new mode
+            if (selectedDate) loadAnalysis(selectedDate);
+        }
+
+        async function loadAnalysis(date) {
+            if (!date) return;
+            selectedDate = date;
+            const baseDate = date.replace('_wl', '');
+            
+            const [statsRes, detailRes] = await Promise.all([
+                fetch("/api/prediction-stats"),
+                fetch(`/api/prediction-detail?date=${baseDate}&mode=${viewMode}`)
+            ]);
+            
+            const statsD = await statsRes.json();
+            const detailD = await detailRes.json();
+
+            // 查找对应模式的统计数据
+            const targetDate = viewMode === 'watchlist' ? `${baseDate}_wl` : baseDate;
+            const stat = statsD.stats.find(s => s.date === targetDate);
+
+            if (!stat && viewMode === 'watchlist') {
+                renderPage({}, detailD.errors || [], statsD.stats);
+                document.querySelector('.stats-row').insertAdjacentHTML('afterbegin', 
+                    '<div style="width:100%;text-align:center;color:var(--dim);padding:10px;">自选股暂无分析数据，请先添加股票并运行分析</div>');
+                return;
+            }
+
+            renderPage(stat || {}, detailD.errors || [], statsD.stats);
+        }
+
+        async function loadDates(){
+            const res = await fetch("/api/prediction-stats");
+            const d = await res.json();
+            const dates = d.stats.map(s => s.date);
+            if(!dates.length){
+                document.getElementById("content").innerHTML='<div class="section"><div class="section-title">暂无数据</div><p style="color:var(--dim)">每日收盘后自动生成。可手动触发：/api/run-prediction</p></div>';
+                return;
+            }
+            const uniqueDates = [...new Set(dates.map(d=>d.replace('_wl','')))].sort().reverse();
+            const dateSelect = document.getElementById("dateSelect");
+            dateSelect.innerHTML = uniqueDates.map(d=>`<option value="${d}">${d}</option>`).join("");
+            selectedDate = uniqueDates[0];
+            dateSelect.addEventListener("change", ()=>loadAnalysis(dateSelect.value));
+            loadAnalysis(selectedDate);
+        }
+
+        function renderPage(stat, errors, allStats){
+            const c = document.getElementById("content");
+            const acc = stat.accuracy_pct || 0;
+            const accColor = acc>=60?'green':acc>=40?'accent':'red';
+            const modeLabel = viewMode==='watchlist' ? '(自选股)' : '(全量)';
+
+            let html = `
+            <div class="stats-row">
+                <div class="stat-card"><div class="label">分析股票数</div><div class="value accent">${stat.total_count||0}</div></div>
+                <div class="stat-card"><div class="label">准确数(<1%)</div><div class="value green">${stat.accurate_count||0}</div></div>
+                <div class="stat-card"><div class="label">准确率 ${modeLabel}</div><div class="value ${accColor}">${acc.toFixed(1)}%</div></div>
+                <div class="stat-card"><div class="label">平均误差</div><div class="value">${stat.avg_error||0}%</div></div>
+                <div class="stat-card"><div class="label">平均绝对误差</div><div class="value purple">${stat.avg_abs_error||0}%</div></div>
+            </div>
+            <div class="section">
+                <div class="section-title">准确率趋势 (近${allStats.length}日) ${modeLabel}</div>
+                <div class="chart-box" id="trendChart"></div>
+            </div>
+            <div class="section">
+                <div class="section-title">算法信息</div>
+                <div class="algo-info">当前版本：<span>${stat.algo_version||'v1.0'}</span></div>
+                <div class="algo-info">参数：<span>${stat.algo_params||'默认'}</span></div>
+            </div>
+            <div class="section">
+                <div class="section-title">个股误差详情 Top 30 (按误差排序) ${modeLabel}</div>
+                <div class="table-wrap">
+                    <table><thead><tr><th>代码</th><th>名称</th><th>预测涨幅</th><th>实际涨幅</th><th>误差</th><th>状态</th></tr></thead>
+                    <tbody id="detailBody"></tbody></table>
+                </div>
+            </div>`;
+            c.innerHTML = html;
+            
+            renderTrendChart(allStats);
+            renderDetailTable(errors);
+        }
+
+        function renderTrendChart(stats){
+            const container = document.getElementById("trendChart");
+            if(!stats||stats.length<2){
+                container.innerHTML='<div style="text-align:center;padding:20px;color:var(--dim)">数据不足，无法绘制趋势图</div>';
+                return;
+            }
+            const data=[...stats].reverse();
+            const W=Math.max(container.clientWidth||600,400),H=200;
+            const pad={top:20,right:20,bottom:30,left:40},cw=W-pad.left-pad.right,ch=H-pad.top-pad.bottom;
+            const accs=data.map(d=>d.accuracy_pct),maxAcc=Math.max(100,...accs)+5;
+            const yVal=v=>pad.top+ch-(v/maxAcc)*ch;
+            let svg=`<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="font-size:10px">`;
+            for(let i=0;i<=4;i++){const v=maxAcc*i/4,y=yVal(v);svg+=`<line x1="${pad.left}" y1="${y}" x2="${W-pad.right}" y2="${y}" stroke="rgba(255,255,255,0.04)"/>`;svg+=`<text x="${pad.left-4}" y="${y+3}" fill="#6b7280" text-anchor="end">${v.toFixed(0)}%</text>`;}
+            let path='',dots='';
+            data.forEach((d,i)=>{
+                const x=pad.left+(cw/(data.length-1))*i,y=yVal(d.accuracy_pct);
+                path+=(path?'L':'M')+`${x},${y}`;
+                const color=d.accuracy_pct>=60?'#22c55e':d.accuracy_pct>=40?'#38bdf8':'#ef4444';
+                dots+=`<circle cx="${x}" cy="${y}" r="4" fill="${color}"/>`;
+                dots+=`<text x="${x}" y="${y-8}" fill="${color}" text-anchor="middle" font-size="9">${d.accuracy_pct.toFixed(0)}%</text>`;
+                if(i%Math.ceil(data.length/8)===0||i===data.length-1)svg+=`<text x="${x}" y="${H-6}" fill="#6b7280" text-anchor="middle" font-size="9">${d.date.slice(5)}</text>`;
+            });
+            svg+=`<path d="${path}" fill="none" stroke="var(--accent)" stroke-width="2" opacity="0.8"/>${dots}</svg>`;
+            container.innerHTML=svg;
+        }
+
+        function renderDetailTable(errors){
+            const tbody=document.getElementById("detailBody");
+            tbody.innerHTML=errors.slice(0,30).map(e=>{
+                const level = e.error_level || (Math.abs(e.error)<1?'准确':(Math.abs(e.error)>3?'离谱':'待提升'));
+                const badgeClass = level==='准确'?'badge-acc':(level==='离谱'?'badge-err':'badge-pend');
+                const badge = `<span class="${badgeClass}">${level}</span>`;
+                const pC=e.predicted_change>=0?'up':'down',aC=e.actual_change>=0?'up':'down',eC=e.error>=0?'up':'down';
+                return`<tr><td style="color:var(--dim);font-family:monospace;cursor:pointer;text-decoration:underline" onclick="showStockTrend('${e.code}')">${e.code}</td><td style="cursor:pointer" onclick="showStockTrend('${e.code}')">${e.name}</td><td class="${pC}">${e.predicted_change>=0?'+':''}${e.predicted_change}%</td><td class="${aC}">${e.actual_change>=0?'+':''}${e.actual_change}%</td><td class="${eC}">${e.error>=0?'+':''}${e.error}%</td><td>${badge}</td></tr>`;
+            }).join("");
+        }
+        
+        // 个股筛选
+        let stockFilterMode = false;
+        let stockFilterCodes = [];
+
+        async function filterByStock() {
+            const input = document.getElementById("stockCodeInput").value.trim();
+            if (!input) {
+                alert("请输入股票代码");
+                return;
+            }
+            const codes = input.split(/[,，]/).map(c => c.trim()).filter(c => c);
+            if (!codes.length) {
+                alert("未识别到有效股票代码");
+                return;
+            }
+            stockFilterMode = true;
+            stockFilterCodes = codes;
+            // 按钮状态
+            document.getElementById("btnAll").className = "filter-btn";
+            document.getElementById("btnWl").className = "filter-btn";
+            // 获取当前选中日期
+            const date = document.getElementById("dateSelect").value;
+            await loadStockFilter(codes, date);
+        }
+
+        function clearStockFilter() {
+            stockFilterMode = false;
+            stockFilterCodes = [];
+            document.getElementById("stockCodeInput").value = "";
+            document.getElementById("filterResultInfo").style.display = "none";
+            // 恢复按钮状态
+            setMode(viewMode || "all");
+        }
+
+        async function loadStockFilter(codes, date) {
+            const infoEl = document.getElementById("filterResultInfo");
+            infoEl.style.display = "block";
+            infoEl.textContent = "查询中...";
+
+            const params = new URLSearchParams();
+            params.set("codes", codes.join(","));
+            if (date) params.set("date", date);
+
+            try {
+                const res = await fetch(`/api/prediction-stock-filter?${params}`);
+                const data = await res.json();
+
+                if (data.error) {
+                    infoEl.textContent = `错误: ${data.error}`;
+                    return;
+                }
+
+                // 显示结果信息
+                let infoHtml = `筛选 <b>${data.total_searched}</b> 只，找到 <b>${data.total_found}</b> 只`;
+                if (data.not_found && data.not_found.length > 0) {
+                    infoHtml += ` | 未找到: ${data.not_found.map(c => `<span class="not-found-tag">${c}</span>`).join("")}`;
+                }
+                infoEl.innerHTML = infoHtml;
+
+                // 渲染表格
+                renderStockFilterTable(data.stocks);
+            } catch (e) {
+                infoEl.textContent = `查询失败: ${e.message}`;
+            }
+        }
+
+        function renderStockFilterTable(stocks) {
+            const c = document.getElementById("content");
+            if (!stocks || stocks.length === 0) {
+                c.innerHTML = '<div class="section"><div class="section-title">筛选结果</div><p style="color:var(--dim)">未找到匹配的预测数据，请检查代码是否正确，或先运行预测分析生成数据</p></div>';
+                return;
+            }
+
+            // 计算筛选统计
+            const total = stocks.length;
+            const accurate = stocks.filter(s => s.is_accurate).length;
+            const avgAbsError = total ? (stocks.reduce((sum, s) => sum + Math.abs(s.error || s.abs_error || 0), 0) / total).toFixed(2) : 0;
+
+            let html = `
+            <div class="stats-row">
+                <div class="stat-card"><div class="label">筛选股票数</div><div class="value accent">${total}</div></div>
+                <div class="stat-card"><div class="label">准确数(<1%)</div><div class="value green">${accurate}</div></div>
+                <div class="stat-card"><div class="label">准确率</div><div class="value">${total ? (accurate/total*100).toFixed(1) : 0}%</div></div>
+                <div class="stat-card"><div class="label">平均绝对误差</div><div class="value purple">${avgAbsError}%</div></div>
+            </div>
+            <div class="section">
+                <div class="section-title">个股预测筛选结果</div>
+                <div class="table-wrap">
+                    <table><thead><tr><th>代码</th><th>名称</th><th>预测涨幅</th><th>实际涨幅</th><th>误差</th><th>状态</th></tr></thead>
+                    <tbody>`;
+            
+            stocks.forEach(e => {
+                const level = e.error_level || (Math.abs(e.error || 0) < 1 ? '准确' : (Math.abs(e.error || 0) > 3 ? '离谱' : '待提升'));
+                const badgeClass = level === '准确' ? 'badge-acc' : (level === '离谱' ? 'badge-err' : 'badge-pend');
+                const badge = `<span class="${badgeClass}">${level}</span>`;
+                const pC = (e.predicted_change || 0) >= 0 ? 'up' : 'down';
+                const aC = (e.actual_change || 0) >= 0 ? 'up' : 'down';
+                const err = e.error || 0;
+                const eC = err >= 0 ? 'up' : 'down';
+                html += `<tr><td style="color:var(--dim);font-family:monospace;cursor:pointer;text-decoration:underline" onclick="showStockTrend('${e.code}')">${e.code}</td><td>${e.name}</td><td class="${pC}">${e.predicted_change >= 0 ? '+' : ''}${e.predicted_change}%</td><td class="${aC}">${e.actual_change >= 0 ? '+' : ''}${e.actual_change}%</td><td class="${eC}">${err >= 0 ? '+' : ''}${err.toFixed(2)}%</td><td>${badge}</td></tr>`;
+            });
+
+            html += `</tbody></table></div></div>`;
+            c.innerHTML = html;
+        }
+
+        // Init
+        loadDates();
+        initAutocomplete();
+
+        // ==================== 输入联想 ====================
+        let acSelected = [];
+        let acActiveIndex = -1;
+        let acDebounceTimer = null;
+
+        function initAutocomplete() {
+            const input = document.getElementById("stockCodeInput");
+
+            input.addEventListener("input", function() {
+                clearTimeout(acDebounceTimer);
+                acDebounceTimer = setTimeout(() => fetchSuggestions(this.value), 200);
+            });
+
+            input.addEventListener("keydown", function(e) {
+                const list = document.getElementById("autocompleteList");
+                const items = list.querySelectorAll(".autocomplete-item");
+                if (!list.classList.contains("show") || !items.length) {
+                    if (e.key === "Enter") {
+                        e.preventDefault();
+                        filterByStock();
+                    }
+                    return;
+                }
+
+                if (e.key === "ArrowDown") {
+                    e.preventDefault();
+                    acActiveIndex = Math.min(acActiveIndex + 1, items.length - 1);
+                    updateActiveItem(items);
+                } else if (e.key === "ArrowUp") {
+                    e.preventDefault();
+                    acActiveIndex = Math.max(acActiveIndex - 1, 0);
+                    updateActiveItem(items);
+                } else if (e.key === "Enter" && acActiveIndex >= 0) {
+                    e.preventDefault();
+                    selectSuggestion(acSelected[acActiveIndex]);
+                } else if (e.key === "Escape") {
+                    hideAutocomplete();
+                }
+            });
+
+            input.addEventListener("focus", function() {
+                if (this.value.trim()) fetchSuggestions(this.value);
+            });
+
+            // 点击外部关闭联想
+            document.addEventListener("click", function(e) {
+                if (!e.target.closest(".autocomplete-wrap")) {
+                    hideAutocomplete();
+                }
+            });
+        }
+
+        function updateActiveItem(items) {
+            items.forEach((item, i) => {
+                item.className = "autocomplete-item" + (i === acActiveIndex ? " active" : "");
+            });
+        }
+
+        async function fetchSuggestions(query) {
+            const q = query.trim().toLowerCase();
+            const parts = q.split(/[,，]/);
+            const currentPart = parts[parts.length - 1].trim();
+            if (!currentPart) { hideAutocomplete(); return; }
+
+            try {
+                const res = await fetch(`/api/stocks?q=${encodeURIComponent(currentPart)}`);
+                const data = await res.json();
+                // 去重：同一代码只保留一个
+                const seen = new Set();
+                acSelected = (data.stocks || []).filter(s => {
+                    const c = s.code.replace(/^(sh|sz|bj)/, "");
+                    if (seen.has(c)) return false;
+                    seen.add(c);
+                    return true;
+                }).map(s => ({...s, code: s.code.replace(/^(sh|sz|bj)/, "")}));
+                if (!acSelected.length) { hideAutocomplete(); return; }
+                renderAutocomplete(acSelected);
+            } catch (e) {
+                hideAutocomplete();
+            }
+        }
+
+        function renderAutocomplete(stocks) {
+            const list = document.getElementById("autocompleteList");
+            list.innerHTML = stocks.map((s, i) =>
+                `<div class="autocomplete-item${i===0?' active':''}" data-index="${i}" onclick="selectSuggestion(acSelected[${i}])">
+                    <span class="ac-code">${s.code}</span>
+                    <span class="ac-name">${s.name}</span>
+                </div>`
+            ).join("");
+            list.classList.add("show");
+            acActiveIndex = 0;
+        }
+
+        function selectSuggestion(stock) {
+            const input = document.getElementById("stockCodeInput");
+            const parts = input.value.split(/[,，]/);
+            if (parts.length > 1) {
+                parts[parts.length - 1] = stock.code;
+            } else {
+                parts[0] = stock.code;
+            }
+            input.value = parts.join(",") + ",";
+            hideAutocomplete();
+            acActiveIndex = -1;
+            input.focus();
+        }
+
+        function hideAutocomplete() {
+            document.getElementById("autocompleteList").classList.remove("show");
+            acActiveIndex = -1;
+        }
+
+        // ==================== 个股趋势图 ====================
+        let savedContent = null;
+
+        async function showStockTrend(code) {
+            const content = document.getElementById("content");
+            const section = document.getElementById("trendSection");
+            const chartEl = document.getElementById("stockTrendChart");
+
+            // 保存当前分析内容并切换到个股趋势视图
+            if (!savedContent) {
+                savedContent = content.innerHTML;
+                content.style.display = "none";
+            }
+            section.classList.add("show");
+            chartEl.innerHTML = '<div style="text-align:center;padding:20px;color:var(--dim)">加载趋势中...</div>';
+
+            // 更新头部：添加返回按钮
+            const trendHeader = section.querySelector(".trend-header");
+            const backBtn = document.getElementById("trendBackBtn");
+            if (!backBtn) {
+                const btn = document.createElement("button");
+                btn.id = "trendBackBtn";
+                btn.textContent = "← 返回分析";
+                btn.style.cssText = "background:rgba(255,255,255,0.06);color:var(--text);border:1px solid var(--border);padding:4px 10px;border-radius:6px;font-size:12px;cursor:pointer;margin-right:auto;";
+                btn.onclick = function() { backToAnalysis(); };
+                trendHeader.insertBefore(btn, trendHeader.firstChild);
+            }
+
+            try {
+                const res = await fetch(`/api/prediction-trend?code=${code}`);
+                const data = await res.json();
+
+                if (!data.history || data.history.length === 0) {
+                    section.classList.remove("show");
+                    content.style.display = "block";
+                    content.innerHTML = '<div class="section"><div class="section-title">无趋势数据</div><p style="color:var(--dim)">该股票暂无历史预测数据</p></div>';
+                    return;
+                }
+
+                document.getElementById("trendStockName").textContent = data.name;
+                document.getElementById("trendStockCode").textContent = data.code;
+                renderStockTrendChart(data.history);
+
+                // 在趋势图下方显示该股的详细数据表
+                renderStockDetailTable(data.history);
+            } catch (e) {
+                chartEl.innerHTML = `<div style="text-align:center;padding:20px;color:var(--dim)">加载失败: ${e.message}</div>`;
+            }
+        }
+
+        function backToAnalysis() {
+            const content = document.getElementById("content");
+            const section = document.getElementById("trendSection");
+            if (savedContent) {
+                content.innerHTML = savedContent;
+                content.style.display = "block";
+                savedContent = null;
+            }
+            section.classList.remove("show");
+        }
+
+        function renderStockDetailTable(history) {
+            // 在趋势图下方追加一个详细表格
+            const section = document.getElementById("trendSection");
+            // 移除旧的表格
+            const oldTable = section.querySelector("#stockDetailTable");
+            if (oldTable) oldTable.remove();
+
+            let html = `<div class="section" id="stockDetailTable">
+                <div class="section-title">每日预测详情</div>
+                <div class="table-wrap">
+                    <table><thead><tr><th>日期</th><th>预测涨幅</th><th>实际涨幅(次日)</th><th>误差</th><th>状态</th></tr></thead>
+                    <tbody>`;
+            history.forEach(d => {
+                const level = d.error_level || (Math.abs(d.error || 0) < 1 ? '准确' : (Math.abs(d.error || 0) > 3 ? '离谱' : '待提升'));
+                const badgeClass = level === '准确' ? 'badge-acc' : (level === '离谱' ? 'badge-err' : 'badge-pend');
+                const pC = (d.predicted_change || 0) >= 0 ? 'up' : 'down';
+                const aC = (d.actual_change || 0) >= 0 ? 'up' : 'down';
+                const err = d.error || 0;
+                const eC = err >= 0 ? 'up' : 'down';
+                html += `<tr><td style="color:var(--dim);font-family:monospace">${d.date}</td><td class="${pC}">${d.predicted_change >= 0 ? '+' : ''}${d.predicted_change}%</td><td class="${aC}">${d.actual_change !== null ? (d.actual_change >= 0 ? '+' : '') + d.actual_change + '%' : '待验证'}</td><td class="${eC}">${err >= 0 ? '+' : ''}${err.toFixed(2)}%</td><td><span class="${badgeClass}">${level}</span></td></tr>`;
+            });
+            html += `</tbody></table></div></div>`;
+            section.insertAdjacentHTML('beforeend', html);
+        }
+
+        function renderStockTrendChart(history) {
+            const container = document.getElementById("stockTrendChart");
+            const data = history;
+            const W = Math.max(container.clientWidth || 600, 400), H = 250;
+            const pad = {top: 30, right: 30, bottom: 40, left: 50};
+            const cw = W - pad.left - pad.right, ch = H - pad.top - pad.bottom;
+
+            // 收集所有值确定Y轴范围
+            let allVals = [];
+            data.forEach(d => {
+                allVals.push(d.predicted_change);
+                if (d.actual_change !== null && d.actual_change !== undefined) {
+                    allVals.push(d.actual_change);
+                }
+            });
+            const minV = Math.min(0, ...allVals);
+            const maxV = Math.max(...allVals);
+            const range = maxV - minV || 10;
+            const yMin = minV - range * 0.1;
+            const yMax = maxV + range * 0.1;
+            const yRange = yMax - yMin;
+
+            const xVal = i => pad.left + (cw / Math.max(data.length - 1, 1)) * i;
+            const yVal = v => pad.top + ch - ((v - yMin) / yRange) * ch;
+
+            let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="font-size:10px">`;
+
+            // 零线
+            if (yMin <= 0 && yMax >= 0) {
+                svg += `<line x1="${pad.left}" y1="${yVal(0)}" x2="${W-pad.right}" y2="${yVal(0)}" stroke="rgba(255,255,255,0.1)" stroke-dasharray="4,4"/>`;
+            }
+
+            // Y轴网格和标签
+            const steps = 5;
+            for (let i = 0; i <= steps; i++) {
+                const v = yMin + (yRange * i / steps);
+                const y = yVal(v);
+                svg += `<line x1="${pad.left}" y1="${y}" x2="${W-pad.right}" y2="${y}" stroke="rgba(255,255,255,0.04)"/>`;
+                svg += `<text x="${pad.left-6}" y="${y+3}" fill="#6b7280" text-anchor="end">${v.toFixed(1)}%</text>`;
+            }
+
+            // 预测值趋势线 (蓝色)
+            let predPath = "";
+            let predDots = "";
+            data.forEach((d, i) => {
+                const x = xVal(i), y = yVal(d.predicted_change);
+                predPath += (predPath ? 'L' : 'M') + `${x},${y}`;
+                predDots += `<circle cx="${x}" cy="${y}" r="3" fill="#38bdf8"/>`;
+                predDots += `<text x="${x}" y="${y-8}" fill="#38bdf8" text-anchor="middle" font-size="9">${d.predicted_change.toFixed(1)}%</text>`;
+                // X轴标签
+                if (i % Math.ceil(data.length / 8) === 0 || i === data.length - 1) {
+                    svg += `<text x="${x}" y="${H-8}" fill="#6b7280" text-anchor="middle" font-size="9">${d.date.slice(5)}</text>`;
+                }
+            });
+            svg += `<path d="${predPath}" fill="none" stroke="#38bdf8" stroke-width="2"/>`;
+            svg += predDots;
+
+            // 实际值趋势线 (橙色)
+            let actPath = "";
+            let actDots = "";
+            data.forEach((d, i) => {
+                if (d.actual_change === null || d.actual_change === undefined) return;
+                const x = xVal(i), y = yVal(d.actual_change);
+                actPath += (actPath ? 'L' : 'M') + `${x},${y}`;
+                actDots += `<circle cx="${x}" cy="${y}" r="3" fill="#f59e0b"/>`;
+                actDots += `<text x="${x}" y="${y+14}" fill="#f59e0b" text-anchor="middle" font-size="9">${d.actual_change.toFixed(1)}%</text>`;
+            });
+            svg += `<path d="${actPath}" fill="none" stroke="#f59e0b" stroke-width="2" stroke-dasharray="6,3"/>`;
+            svg += actDots;
+
+            svg += `</svg>`;
+            container.innerHTML = svg;
+        }
+    </script>
+</body>
+</html>

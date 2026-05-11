@@ -1,0 +1,6 @@
+astock.db
+__pycache__/
+*.pyc
+reports/
+*.log
+.venv/

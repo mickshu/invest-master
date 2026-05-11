@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>A股券商隔夜挂单排行榜</title>
+    <style>
+        :root {
+            --bg: #0f1724; --card: #162032; --border: rgba(255,255,255,0.06);
+            --text: #e2e8f0; --dim: #94a3b8; --accent: #38bdf8;
+            --up: #ef4444; --down: #22c55e; --buy: #ff4d4f; --sell: #52c41a;
+            --tag-bg: rgba(139,92,246,0.15); --tag-text: #a78bfa;
+        }
+        * { margin:0; padding:0; box-sizing:border-box; -webkit-tap-highlight-color:transparent; }
+        body { font-family:-apple-system,"PingFang SC","Microsoft YaHei",sans-serif; background:var(--bg); color:var(--text); line-height:1.5; }
+        .container { max-width:1200px; margin:0 auto; padding:0 12px; }
+        .header { padding:14px 0; text-align:center; border-bottom:1px solid var(--border); }
+        .header h1 { font-size:19px; background:linear-gradient(90deg,var(--accent),#a78bfa); -webkit-background-clip:text; -webkit-text-fill-color:transparent; margin-bottom:4px; }
+        .header .meta { font-size:12px; color:var(--dim); display:flex; justify-content:center; gap:10px; flex-wrap:wrap; }
+        .header .badge { background:rgba(34,197,94,0.15); color:#22c55e; padding:2px 8px; border-radius:6px; }
+        .header .nav-link { color:var(--accent); text-decoration:underline; cursor:pointer; }
+        .summary { display:flex; gap:8px; margin:12px 0; overflow-x:auto; padding-bottom:4px; -webkit-overflow-scrolling:touch; }
+        .summary-card { background:var(--card); border-radius:10px; padding:10px; min-width:80px; flex:1; text-align:center; border:1px solid var(--border); }
+        .summary-card .label { font-size:11px; color:var(--dim); }
+        .summary-card .value { font-size:17px; font-weight:700; margin-top:2px; }
+        .filters { background:var(--card); border-radius:10px; padding:10px; margin-bottom:12px; display:flex; gap:8px; flex-wrap:wrap; align-items:center; border:1px solid var(--border); }
+        .search-wrap { position:relative; flex:1; min-width:140px; order:-1; }
+        .stock-search-input { width:100%; background:rgba(255,255,255,0.06); border:1px solid var(--border); color:var(--text); padding:7px 10px; border-radius:8px; font-size:13px; }
+        .stock-search-input:focus { outline:none; border-color:var(--accent); }
+        .dropdown { position:absolute; top:100%; left:0; right:0; background:var(--card); border:1px solid var(--border); border-radius:8px; margin-top:4px; max-height:200px; overflow-y:auto; z-index:10; display:none; }
+        .dropdown-item { padding:8px 12px; cursor:pointer; display:flex; justify-content:space-between; border-bottom:1px solid var(--border); }
+        .dropdown-item:hover { background:rgba(255,255,255,0.05); }
+        .filter-group { display:flex; align-items:center; gap:6px; }
+        .filter-group label { font-size:12px; color:var(--dim); white-space:nowrap; }
+        select { background:rgba(255,255,255,0.06); border:1px solid var(--border); color:var(--text); padding:6px 8px; border-radius:8px; font-size:13px; cursor:pointer; }
+        .filter-btn { background:rgba(255,255,255,0.06); border:1px solid var(--border); color:var(--text); padding:6px 12px; border-radius:8px; font-size:13px; cursor:pointer; }
+        .filter-btn.active { background:rgba(56,189,248,0.2); border-color:var(--accent); color:var(--accent); }
+        .clear-btn { background:rgba(239,68,68,0.15); color:#ef4444; border:none; padding:5px 10px; border-radius:6px; font-size:12px; cursor:pointer; display:none; }
+        .table-wrap { background:var(--card); border-radius:10px; overflow:hidden; border:1px solid var(--border); margin-bottom:16px; }
+        .table-scroll { overflow-x:auto; -webkit-overflow-scrolling:touch; }
+        table { width:100%; border-collapse:collapse; min-width:700px; }
+        th { padding:9px 6px; text-align:left; font-size:11px; color:var(--dim); font-weight:600; background:rgba(0,0,0,0.2); border-bottom:1px solid var(--border); cursor:pointer; user-select:none; white-space:nowrap; }
+        th:hover { color:var(--accent); }
+        th.active { color:var(--accent); }
+        th .arrow { margin-left:3px; opacity:0.4; font-size:10px; }
+        th.active .arrow { opacity:1; }
+        td { padding:9px 6px; font-size:13px; border-bottom:1px solid var(--border); }
+        tr:last-child td { border-bottom:none; }
+        tr:active { background:rgba(255,255,255,0.02); }
+        .rank { width:26px; height:26px; border-radius:6px; display:inline-flex; align-items:center; justify-content:center; font-weight:700; font-size:11px; }
+        .r1 { background:linear-gradient(135deg,#fbbf24,#f59e0b); color:#000; }
+        .r2 { background:linear-gradient(135deg,#94a3b8,#64748b); color:#000; }
+        .r3 { background:linear-gradient(135deg,#b87333,#8b5a2b); color:#fff; }
+        .r { background:rgba(255,255,255,0.06); color:var(--dim); }
+        .code { color:var(--dim); font-size:11px; font-family:monospace; }
+        .name { font-weight:600; cursor:pointer; color:var(--text); }
+        .name:hover { color:var(--accent); }
+        .amount { color:var(--accent); font-weight:600; font-family:monospace; font-size:12px; }
+        .buy { color:var(--buy); font-weight:600; font-family:monospace; font-size:12px; }
+        .sell { color:var(--sell); font-weight:600; font-family:monospace; font-size:12px; }
+        .up { color:var(--up); font-weight:600; }
+        .down { color:var(--down); font-weight:600; }
+        .vol { font-family:monospace; font-size:12px; }
+        .tags { display:flex; flex-wrap:wrap; gap:3px; max-width:130px; }
+        .tag { background:var(--tag-bg); color:var(--tag-text); padding:1px 4px; border-radius:3px; font-size:10px; white-space:nowrap; }
+        .pagination { display:flex; align-items:center; justify-content:center; gap:5px; margin:14px 0; flex-wrap:wrap; }
+        .pg-btn { background:var(--card); border:1px solid var(--border); color:var(--text); padding:5px 9px; border-radius:6px; font-size:12px; cursor:pointer; }
+        .pg-btn:disabled { opacity:0.3; }
+        .pg-btn.active { background:rgba(56,189,248,0.2); border-color:var(--accent); color:var(--accent); }
+        .pg-info { color:var(--dim); font-size:11px; }
+        .footer { text-align:center; font-size:11px; color:var(--dim); padding:14px 0 30px; border-top:1px solid var(--border); }
+        @media(max-width:768px){
+            .container { padding:0 8px; }
+            .header h1 { font-size:16px; }
+            .search-wrap { min-width:100%; order:-1; }
+            .filter-group { flex:0; }
+            table { min-width:600px; }
+            .tags { display:none; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>A股券商隔夜挂单排行榜</h1>
+            <div class="meta">
+                <span id="reportDate"></span>
+                <span class="badge" id="dataSource"></span>
+                <span id="updateTime"></span>
+                <span class="nav-link" onclick="window.location.href='/prediction'">预测分析</span>
+                <span class="nav-link" onclick="window.location.href='/watchlist'">自选股管理</span>
+            </div>
+        </div>
+        <div class="summary" id="summary"></div>
+        <div class="filters">
+            <div class="filter-group search-wrap">
+                <input type="text" id="stockSearchInput" class="stock-search-input" placeholder="输入代码/名称搜索个股..." autocomplete="off">
+                <div id="dropdown" class="dropdown"></div>
+            </div>
+            <button id="clearBtn" class="clear-btn" onclick="clearStock()">清除</button>
+            <div class="filter-group">
+                <label>券商</label>
+                <select id="brokerageSelect"><option value="全部">全部</option></select>
+            </div>
+            <div class="filter-group">
+                <button class="filter-btn active" id="btnAll" onclick="setWatchlistFilter(false)">全部</button>
+                <button class="filter-btn" id="btnWl" onclick="setWatchlistFilter(true)">自选股</button>
+            </div>
+            <div class="filter-group">
+                <label>每页</label>
+                <select id="pageSizeSelect"><option value="20">20</option><option value="30" selected>30</option><option value="50">50</option></select>
+            </div>
+        </div>
+        <div class="table-wrap">
+            <div class="table-scroll">
+                <table>
+                    <thead>
+                        <tr>
+                            <th style="width:40px">排名</th>
+                            <th>股票</th>
+                            <th data-field="total_amount">总金额<span class="arrow">▼</span></th>
+                            <th data-field="buy_amount">买盘<span class="arrow"></span></th>
+                            <th data-field="sell_amount">卖盘<span class="arrow"></span></th>
+                            <th data-field="change_pct">真实涨跌<span class="arrow"></span></th>
+                            <th data-field="max_change">预期涨幅<span class="arrow"></span></th>
+                            <th data-field="total_volume">挂单手数<span class="arrow"></span></th>
+                            <th>涉及券商</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tbody"><tr><td colspan="9" style="text-align:center;padding:30px;color:var(--dim)">加载中...</td></tr></tbody>
+                </table>
+            </div>
+        </div>
+        <div class="pagination" id="pagination"></div>
+        <div class="footer">数据源：腾讯实时行情API | 隔夜数据为算法推算 | 涨跌停已按板块限制</div>
+    </div>
+    <script>
+        let page=1,pageSize=30,total=0;
+        let brokerage="全部",stockCode=null,watchlistOnly=false;
+        let sortField="total_amount",sortOrder="DESC";
+        let searchTimer;
+        (async()=>{
+            const b=await fetch("/api/brokerages").then(r=>r.json());
+            const sel=document.getElementById("brokerageSelect");
+            b.brokerages.forEach(v=>{if(v!=="全部"){const o=document.createElement("option");o.value=v;o.textContent=v;sel.appendChild(o);}});
+            document.getElementById("brokerageSelect").addEventListener("change",e=>{brokerage=e.target.value;page=1;load();});
+            document.getElementById("pageSizeSelect").addEventListener("change",e=>{pageSize=+e.target.value;page=1;load();});
+            document.querySelectorAll("th[data-field]").forEach(th=>{th.addEventListener("click",()=>{const f=th.dataset.field;if(sortField===f)sortOrder=sortOrder==="DESC"?"ASC":"DESC";else{sortField=f;sortOrder="DESC";}page=1;updateSortUI();load();});});
+            updateSortUI();
+            const inp=document.getElementById("stockSearchInput"),dd=document.getElementById("dropdown");
+            inp.addEventListener("input",()=>{clearTimeout(searchTimer);const q=inp.value.trim();if(!q){dd.style.display="none";return;}searchTimer=setTimeout(()=>fetchAutocomplete(q),250);});
+            document.addEventListener("click",e=>{if(!e.target.closest(".search-wrap"))dd.style.display="none";});
+            load();
+        })();
+        function setWatchlistFilter(v){watchlistOnly=v;document.getElementById("btnAll").classList.toggle("active",!v);document.getElementById("btnWl").classList.toggle("active",v);page=1;load();}
+        function updateSortUI(){document.querySelectorAll("th[data-field]").forEach(th=>{th.classList.toggle("active",th.dataset.field===sortField);const a=th.querySelector(".arrow");if(th.dataset.field===sortField)a.textContent=sortOrder==="DESC"?"▼":"▲";else a.textContent="";});}
+        async function fetchAutocomplete(q){const res=await fetch(`/api/stocks?q=${encodeURIComponent(q)}`);const d=await res.json();const dd=document.getElementById("dropdown");dd.innerHTML=d.stocks.map(s=>`<div class="dropdown-item" onclick="pickStock('${s.code}','${s.name}')"><span style="color:var(--accent)">${s.code}</span><span>${s.name}</span></div>`).join("");dd.style.display=d.stocks.length?"block":"none";}
+        function pickStock(code,name){stockCode=code;page=1;document.getElementById("stockSearchInput").value=`${name} (${code})`;document.getElementById("dropdown").style.display="none";document.getElementById("clearBtn").style.display="inline-block";load();}
+        function clearStock(){stockCode=null;page=1;document.getElementById("stockSearchInput").value="";document.getElementById("clearBtn").style.display="none";load();}
+        async function load(){const url=`/api/rankings?sort_field=${sortField}&sort_order=${sortOrder}&page=${page}&page_size=${pageSize}&brokerage=${encodeURIComponent(brokerage)}${stockCode?`&stock_code=${stockCode}`:''}&watchlist=${watchlistOnly?1:0}`;const d=await fetch(url).then(r=>r.json());document.getElementById("reportDate").textContent=d.date;document.getElementById("updateTime").textContent=d.update_time;document.getElementById("dataSource").textContent=d.data_source;renderSummary(d);renderTable(d.data);renderPg(d.page,d.total_pages,d.total);total=d.total;}
+        function renderSummary(d){const amt=d.data.reduce((s,x)=>s+x.total_amount,0);const avg=d.data.length?d.data.reduce((s,x)=>s+x.max_change,0)/d.data.length:0;document.getElementById("summary").innerHTML=`<div class="summary-card"><div class="label">上榜</div><div class="value" style="color:var(--accent)">${d.total}</div></div><div class="summary-card"><div class="label">页总额</div><div class="value" style="color:#22c55e">${(amt/1e4).toFixed(1)}亿</div></div><div class="summary-card"><div class="label">均预期</div><div class="value" style="color:${avg>=0?'var(--up)':'var(--down)'}">${avg>=0?'+':''}${avg.toFixed(2)}%</div></div><div class="summary-card"><div class="label">筛选</div><div class="value" style="color:var(--tag-text);font-size:13px">${watchlistOnly?'自选股':brokerage}</div></div>`;}
+        function renderTable(data){const tbody=document.getElementById("tbody");if(!data.length){tbody.innerHTML='<tr><td colspan="9" style="text-align:center;padding:24px;color:var(--dim)">暂无数据</td></tr>';return;}tbody.innerHTML=data.map((x,i)=>{const rank=(page-1)*pageSize+i+1;const rc=rank===1?'r1':rank===2?'r2':rank===3?'r3':'r';const cC=x.max_change>=0?'up':'down';const rC=x.change_pct>=0?'up':'down';const tags=(x.brokerage_list||"").split(", ").filter(Boolean).slice(0,2).map(t=>`<span class="tag">${t}</span>`).join("");const tags2=(x.brokerage_list||"").split(", ").length>2?`<span class="tag">+${x.brokerage_list.split(", ").length-2}</span>`:'';return`<tr><td><span class="rank ${rc}">${rank}</span></td><td><div class="code">${x.code}</div><div class="name" onclick="openStock('${x.code}')">${x.name}</div></td><td class="amount">${Number(x.total_amount).toLocaleString()}</td><td class="buy">${Number(x.buy_amount||0).toLocaleString()}</td><td class="sell">${Number(x.sell_amount||0).toLocaleString()}</td><td class="${rC}">${x.change_pct>=0?'+':''}${x.change_pct}%</td><td class="${cC}">${x.max_change>=0?'+':''}${x.max_change}%</td><td class="vol">${x.total_volume.toLocaleString()}</td><td><div class="tags">${tags}${tags2}</div></td></tr>`;}).join("");}
+        function renderPg(cur,tp,tot){const div=document.getElementById("pagination");if(tp<=1){div.innerHTML='';return;}let h=`<button class="pg-btn" onclick="go(${cur-1})" ${cur<=1?'disabled':''}>上一页</button>`;const pages=new Set([1,cur-1,cur,cur+1,tp]);[...pages].filter(p=>p>=1&&p<=tp).sort((a,b)=>a-b).forEach(p=>{if(p>1&&cur>3&&p===cur-1)h+=`<span class="pg-info">...</span>`;h+=`<button class="pg-btn ${p===cur?'active':''}" onclick="go(${p})">${p}</button>`;});h+=`<button class="pg-btn" onclick="go(${cur+1})" ${cur>=tp?'disabled':''}>下一页</button><span class="pg-info">${cur}/${tp} (${tot}条)</span>`;div.innerHTML=h;}
+        function go(p){if(p<1)return;page=p;load();window.scrollTo({top:0,behavior:"smooth"});}
+        function openStock(code){window.open(`/stock?code=${code}`,'_blank');}
+    </script>
+</body>
+</html>

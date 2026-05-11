@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个股详情</title>
+    <style>
+        :root {
+            --bg: #0f1724; --card: #162032; --border: rgba(255,255,255,0.06);
+            --text: #e2e8f0; --dim: #94a3b8; --accent: #38bdf8;
+            --up: #ef4444; --down: #22c55e; --tag-bg: rgba(139,92,246,0.15); --tag-text: #a78bfa;
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system, "PingFang SC", "Microsoft YaHei", sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+        
+        .header { display: flex; align-items: center; gap: 12px; padding: 12px 16px; background: var(--card); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 10; }
+        .back-btn { display: inline-flex; align-items: center; gap: 6px; color: var(--text); text-decoration: none; background: rgba(255,255,255,0.06); border: 1px solid var(--border); padding: 6px 12px; border-radius: 8px; font-size: 13px; }
+        .back-btn:hover { border-color: var(--accent); color: var(--accent); }
+        .stock-header { flex: 1; }
+        .stock-title { display: flex; align-items: baseline; gap: 8px; flex-wrap: wrap; }
+        .stock-title .name { font-size: 18px; font-weight: 700; }
+        .stock-title .code { font-size: 13px; color: var(--dim); font-family: monospace; }
+        .stock-price { display: flex; align-items: baseline; gap: 10px; margin-top: 2px; }
+        .price-val { font-size: 24px; font-weight: 700; font-family: monospace; }
+        .price-change { font-size: 15px; font-weight: 600; padding: 2px 8px; border-radius: 6px; }
+        .p-up { color: var(--up); background: rgba(239,68,68,0.12); }
+        .p-down { color: var(--down); background: rgba(34,197,94,0.12); }
+
+        .info-section { padding: 12px 16px; }
+        .info-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(110px, 1fr)); gap: 8px; margin-bottom: 12px; }
+        .info-card { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; }
+        .info-card .label { font-size: 11px; color: var(--dim); margin-bottom: 4px; }
+        .info-card .value { font-size: 15px; font-weight: 600; font-family: monospace; }
+        .info-card .value.up { color: var(--up); }
+        .info-card .value.down { color: var(--down); }
+        .info-card .value.accent { color: var(--accent); }
+        .info-card .value.purple { color: var(--tag-text); }
+
+        .brokerage-section { background: var(--card); border: 1px solid var(--border); border-radius: 10px; padding: 10px 12px; margin-bottom: 12px; }
+        .brokerage-section .label { font-size: 11px; color: var(--dim); margin-bottom: 6px; }
+        .brokerage-tags { display: flex; flex-wrap: wrap; gap: 4px; }
+        .b-tag { background: var(--tag-bg); color: var(--tag-text); padding: 3px 8px; border-radius: 4px; font-size: 12px; }
+
+        /* K-line Chart */
+        .chart-wrap { background: var(--card); border-top: 1px solid var(--border); padding: 12px 8px; margin-top: 4px; }
+        .chart-title { font-size: 13px; color: var(--dim); margin-bottom: 8px; padding-left: 8px; }
+        .chart-container { position: relative; width: 100%; }
+        .chart-container svg { display: block; width: 100%; height: auto; }
+        .chart-loading { text-align: center; padding: 40px; color: var(--dim); }
+        .chart-error { text-align: center; padding: 20px; color: var(--dim); font-size: 13px; }
+        .crosshair-info { position: absolute; top: 8px; right: 8px; background: rgba(15,23,36,0.85); border: 1px solid var(--border); border-radius: 6px; padding: 6px 10px; font-size: 12px; font-family: monospace; display: none; pointer-events: none; }
+        .crosshair-info .ch-date { color: var(--dim); margin-bottom: 2px; }
+        .crosshair-info .ch-row { display: flex; justify-content: space-between; gap: 16px; }
+        .crosshair-info .ch-label { color: var(--dim); }
+        .crosshair-info .ch-val { font-weight: 600; }
+
+        .loading { text-align: center; padding: 40px; color: var(--dim); }
+
+        @media (max-width: 600px) {
+            .header { padding: 10px 12px; }
+            .stock-title .name { font-size: 16px; }
+            .price-val { font-size: 20px; }
+            .info-section { padding: 10px 12px; }
+            .info-grid { grid-template-columns: repeat(3, 1fr); gap: 6px; }
+            .info-card { padding: 8px; }
+            .info-card .value { font-size: 13px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="/" class="back-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+            返回排行
+        </a>
+        <div class="stock-header">
+            <div class="stock-title">
+                <span class="name" id="name">加载中...</span>
+                <span class="code" id="code"></span>
+            </div>
+            <div class="stock-price">
+                <span class="price-val" id="price">--</span>
+                <span class="price-change" id="change">--</span>
+            </div>
+        </div>
+    </div>
+
+    <div id="content">
+        <div class="loading" id="loading">加载数据...</div>
+    </div>
+
+    <div id="chartWrap" style="display:none">
+        <div class="info-section">
+            <div class="info-grid" id="infoGrid"></div>
+            <div class="brokerage-section" id="brokerageSection"></div>
+        </div>
+        <div class="chart-wrap">
+            <div class="chart-title">近60日K线图</div>
+            <div class="chart-container" id="chartContainer">
+                <div class="chart-loading" id="chartLoading">K线数据加载中...</div>
+                <div class="crosshair-info" id="crosshair"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const params = new URLSearchParams(location.search);
+        const code = params.get('code');
+
+        if(!code) {
+            document.getElementById('loading').innerHTML = '未指定股票代码';
+        } else {
+            document.getElementById('code').textContent = code;
+            fetch(`/api/stock-detail?code=${code}`)
+                .then(r => r.json())
+                .then(d => {
+                    if(d.error) { document.getElementById('loading').textContent = d.error; return; }
+                    renderPage(d);
+                    loadKLine(code);
+                })
+                .catch(() => { document.getElementById('loading').textContent = '加载失败'; });
+        }
+
+        function renderPage(d) {
+            document.getElementById('loading').style.display = 'none';
+            document.getElementById('chartWrap').style.display = 'block';
+
+            document.getElementById('name').textContent = d.name;
+            const priceEl = document.getElementById('price');
+            const changeEl = document.getElementById('change');
+            priceEl.textContent = d.price ? d.price.toFixed(2) : '--';
+            const cp = d.change_pct;
+            if(cp) {
+                const isUp = cp >= 0;
+                changeEl.textContent = `${isUp?'+':''}${cp.toFixed(2)}%`;
+                changeEl.className = `price-change ${isUp?'p-up':'p-down'}`;
+                priceEl.style.color = isUp ? 'var(--up)' : 'var(--down)';
+            }
+
+            const grid = document.getElementById('infoGrid');
+            const cards = [
+                { label: '今开', value: d.open ? d.open.toFixed(2) : '--' },
+                { label: '最高', value: d.high ? d.high.toFixed(2) : '--' },
+                { label: '最低', value: d.low ? d.low.toFixed(2) : '--' },
+                { label: '昨收', value: d.prev_close ? d.prev_close.toFixed(2) : '--' },
+                { label: '振幅', value: d.amplitude ? d.amplitude.toFixed(2)+'%' : '--' },
+                { label: '成交量', value: d.volume ? (d.volume/1e4).toFixed(0)+'万手' : '--' },
+                { label: '成交额', value: d.turnover ? d.turnover.toFixed(0)+'万' : '--' },
+                { label: '隔夜金额', value: d.total_amount ? Number(d.total_amount).toLocaleString()+'万' : '--', cls: 'accent' },
+                { label: '预期涨幅', value: d.max_change ? d.max_change.toFixed(2)+'%' : '--', cls: d.max_change>=0?'up':'down' },
+                { label: '挂单手数', value: d.total_volume_rank ? Number(d.total_volume_rank).toLocaleString() : '--' },
+                { label: '涉及券商', value: d.brokerage_count ? d.brokerage_count+'家' : '--', cls: 'purple' },
+            ];
+            if(d.change_stats?.week_5 !== undefined) {
+                cards.push({ label: '近5日累计', value: (d.change_stats.week_5>=0?'+':'')+d.change_stats.week_5.toFixed(2)+'%', cls: d.change_stats.week_5>=0?'up':'down' });
+            }
+            grid.innerHTML = cards.map(c => `<div class="info-card"><div class="label">${c.label}</div><div class="value ${c.cls||''}">${c.value}</div></div>`).join('');
+
+            if(d.brokerage_list) {
+                const tags = d.brokerage_list.split(', ').filter(Boolean);
+                document.getElementById('brokerageSection').innerHTML = `<div class="label">涉及券商 (${tags.length}家)</div><div class="brokerage-tags">${tags.map(t=>`<span class="b-tag">${t}</span>`).join('')}</div>`;
+            }
+        }
+
+        async function loadKLine(code) {
+            try {
+                const res = await fetch(`/api/kline?code=${code}`);
+                const d = await res.json();
+                if(!d.klines || d.klines.length === 0) {
+                    document.getElementById('chartLoading').innerHTML = '<div class="chart-error">K线数据暂不可用</div>';
+                    return;
+                }
+                drawCandlestick(d.klines);
+            } catch(e) {
+                document.getElementById('chartLoading').innerHTML = '<div class="chart-error">K线加载失败</div>';
+            }
+        }
+
+        function drawCandlestick(klines) {
+            const container = document.getElementById('chartContainer');
+            document.getElementById('chartLoading').style.display = 'none';
+
+            const W = Math.max(container.clientWidth, 320);
+            const H = Math.round(W * 0.5);
+            const VOL_H = Math.round(H * 0.2);
+            const CHART_H = H - VOL_H - 20;
+            const pad = { top: 10, right: 50, bottom: 25, left: 5 };
+            const cw = W - pad.left - pad.right;
+            const n = klines.length;
+            const barW = Math.max(1, (cw / n) * 0.65);
+            const gap = cw / n;
+
+            // Price range
+            let minP = Infinity, maxP = -Infinity, maxVol = 0;
+            klines.forEach(k => {
+                if(k.low < minP) minP = k.low;
+                if(k.high > maxP) maxP = k.high;
+                if(k.volume > maxVol) maxVol = k.volume;
+            });
+            const pRange = maxP - minP || 1;
+            minP -= pRange * 0.05;
+            maxP += pRange * 0.05;
+
+            const yPrice = p => pad.top + CHART_H - ((p - minP) / (maxP - minP)) * CHART_H;
+            const yVol = v => pad.top + CHART_H + 10 + VOL_H - (v / maxVol) * VOL_H;
+
+            let svg = `<svg viewBox="0 0 ${W} ${H}" xmlns="http://www.w3.org/2000/svg" style="font-size:10px">`;
+            // Grid lines
+            const gridLines = 5;
+            for(let i = 0; i <= gridLines; i++) {
+                const p = minP + (maxP - minP) * i / gridLines;
+                const y = yPrice(p);
+                svg += `<line x1="${pad.left}" y1="${y}" x2="${W-pad.right}" y2="${y}" stroke="rgba(255,255,255,0.04)" stroke-width="1"/>`;
+                svg += `<text x="${W-pad.right+4}" y="${y+3}" fill="#6b7280">${p.toFixed(2)}</text>`;
+            }
+            // MA lines (5-day and 20-day)
+            function ma(data, period) {
+                const result = [];
+                for(let i = 0; i < data.length; i++) {
+                    if(i < period - 1) { result.push(null); continue; }
+                    let sum = 0;
+                    for(let j = i - period + 1; j <= i; j++) sum += data[j].close;
+                    result.push(sum / period);
+                }
+                return result;
+            }
+            const ma5 = ma(klines, 5), ma20 = ma(klines, 20);
+            function drawMA(data, color) {
+                let path = '';
+                data.forEach((v, i) => {
+                    if(v === null) return;
+                    const x = pad.left + i * gap + gap / 2;
+                    const y = yPrice(v);
+                    path += (path ? 'L' : 'M') + `${x},${y}`;
+                });
+                return path ? `<path d="${path}" fill="none" stroke="${color}" stroke-width="1.2" opacity="0.7"/>` : '';
+            }
+            svg += drawMA(ma5, '#fbbf24');
+            svg += drawMA(ma20, '#a78bfa');
+
+            // Candles
+            klines.forEach((k, i) => {
+                const x = pad.left + i * gap + gap / 2;
+                const isUp = k.close >= k.open;
+                const color = isUp ? '#ef4444' : '#22c55e';
+                const bodyTop = yPrice(Math.max(k.open, k.close));
+                const bodyBot = yPrice(Math.min(k.open, k.close));
+                const bodyH = Math.max(1, bodyBot - bodyTop);
+                // Wick
+                svg += `<line x1="${x}" y1="${yPrice(k.high)}" x2="${x}" y2="${yPrice(k.low)}" stroke="${color}" stroke-width="1"/>`;
+                // Body
+                if(isUp) {
+                    svg += `<rect x="${x-barW/2}" y="${bodyTop}" width="${barW}" height="${bodyH}" fill="${color}" rx="0.5"/>`;
+                } else {
+                    svg += `<rect x="${x-barW/2}" y="${bodyTop}" width="${barW}" height="${bodyH}" fill="${color}" rx="0.5"/>`;
+                }
+                // Volume bar
+                const vy = yVol(k.volume);
+                svg += `<rect x="${x-barW/2}" y="${vy}" width="${barW}" height="${pad.top+CHART_H+10+VOL_H-vy}" fill="${color}" opacity="0.3" rx="0.5"/>`;
+            });
+
+            // Date labels
+            const labelCount = Math.min(6, n);
+            const step = Math.floor(n / labelCount);
+            for(let i = 0; i < n; i += step) {
+                const x = pad.left + i * gap + gap / 2;
+                const d = klines[i].date;
+                const label = d.length >= 5 ? d.slice(2,7) : d;
+                svg += `<text x="${x}" y="${H-4}" fill="#6b7280" text-anchor="middle" font-size="9">${label}</text>`;
+            }
+
+            svg += `</svg>`;
+            
+            const chartDiv = document.createElement('div');
+            chartDiv.innerHTML = svg;
+            chartDiv.style.cursor = 'crosshair';
+            container.insertBefore(chartDiv, container.firstChild);
+
+            // Crosshair interaction
+            const crosshair = document.getElementById('crosshair');
+            chartDiv.addEventListener('mousemove', e => {
+                const rect = chartDiv.querySelector('svg').getBoundingClientRect();
+                const mouseX = (e.clientX - rect.left) / rect.width * W;
+                const idx = Math.floor((mouseX - pad.left) / gap);
+                if(idx >= 0 && idx < n) {
+                    const k = klines[idx];
+                    const isUp = k.close >= k.open;
+                    crosshair.style.display = 'block';
+                    crosshair.innerHTML = `
+                        <div class="ch-date">${k.date}</div>
+                        <div class="ch-row"><span class="ch-label">开</span><span class="ch-val" style="color:${isUp?'var(--up)':'var(--down)'}">${k.open.toFixed(2)}</span></div>
+                        <div class="ch-row"><span class="ch-label">高</span><span class="ch-val">${k.high.toFixed(2)}</span></div>
+                        <div class="ch-row"><span class="ch-label">低</span><span class="ch-val">${k.low.toFixed(2)}</span></div>
+                        <div class="ch-row"><span class="ch-label">收</span><span class="ch-val" style="color:${isUp?'var(--up)':'var(--down)'}">${k.close.toFixed(2)}</span></div>
+                    `;
+                }
+            });
+            chartDiv.addEventListener('mouseleave', () => { crosshair.style.display = 'none'; });
+        }
+    </script>
+</body>
+</html>
