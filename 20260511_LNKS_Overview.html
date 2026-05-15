@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { 
+    width: 840px; 
+    font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", -apple-system, sans-serif;
+    background: linear-gradient(160deg, #0a0a1a 0%, #141432 40%, #1a1a3e 70%, #0d2137 100%);
+    padding: 0;
+    color: #e8e8f0;
+  }
+  .card { background: transparent; padding: 32px 36px 24px; }
+  
+  .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 24px; }
+  .company-section { display: flex; align-items: baseline; gap: 16px; }
+  .company { font-size: 34px; font-weight: 900; color: #fff; letter-spacing: 2px; }
+  .code { font-size: 16px; color: #8892b0; font-weight: 500; }
+  .industry { font-size: 13px; color: #5a6380; margin-top: 4px; }
+  .badge { 
+    background: linear-gradient(135deg, #ff5252, #ff1744); 
+    color: #fff; padding: 8px 22px; border-radius: 24px; 
+    font-size: 16px; font-weight: 700; letter-spacing: 1px;
+    box-shadow: 0 4px 15px rgba(255,82,82,0.3);
+  }
+  
+  .rating-section { display: flex; gap: 16px; margin-bottom: 20px; }
+  .rating-item { 
+    flex: 1; background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 14px; padding: 18px 14px; text-align: center;
+  }
+  .rating-label { font-size: 13px; color: #6a7394; margin-bottom: 8px; font-weight: 500; }
+  .stars { font-size: 24px; margin-bottom: 6px; letter-spacing: 2px; }
+  .rating-value { font-size: 14px; color: #a0a8c4; font-weight: 400; }
+  
+  .price-section { display: grid; grid-template-columns: 1.2fr 1fr 1fr 1fr; gap: 14px; margin-bottom: 20px; }
+  .price-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 18px; text-align: center; }
+  .price-item.highlight { background: linear-gradient(135deg, rgba(255,82,82,0.08), rgba(255,82,82,0.03)); border: 1px solid rgba(255,82,82,0.15); }
+  .price-label { font-size: 12px; color: #6a7394; margin-bottom: 8px; font-weight: 500; letter-spacing: 0.5px; }
+  .price-value { font-size: 26px; font-weight: 700; color: #fff; }
+  .price-value.red { color: #ff5252; }
+  .price-value.orange { color: #ffab00; }
+  .price-sub { font-size: 11px; color: #5a6380; margin-top: 4px; }
+  
+  .data-section { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 16px; }
+  .data-item { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 12px; padding: 16px; text-align: center; }
+  .data-label { font-size: 12px; color: #6a7394; margin-bottom: 8px; font-weight: 500; }
+  .data-value { font-size: 20px; font-weight: 700; color: #e0e0f0; }
+  .data-growth { font-size: 12px; color: #ff5252; font-weight: 500; margin-top: 2px; }
+  
+  .cashflow-section { 
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 20px;
+    padding: 16px; background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.05); border-radius: 14px;
+  }
+  .cf-label { font-size: 12px; color: #6a7394; margin-bottom: 6px; font-weight: 500; }
+  .cf-value { font-size: 20px; font-weight: 700; }
+  .cf-positive { color: #00e676; }
+  .cf-negative { color: #ff5252; }
+  
+  .masters-section { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.06); border-radius: 14px; padding: 18px 24px; display: flex; justify-content: space-between; align-items: center; }
+  .masters-label { font-size: 14px; color: #6a7394; font-weight: 500; }
+  .masters-votes { display: flex; gap: 24px; }
+  .vote { display: flex; align-items: baseline; gap: 6px; }
+  .vote-count { font-size: 28px; font-weight: 900; line-height: 1; }
+  .vote-label { font-size: 13px; color: #8892b0; font-weight: 400; }
+  .vote-buy .vote-count { color: #00e676; }
+  .vote-hold .vote-count { color: #ffab00; }
+  .vote-sell .vote-count { color: #ff5252; }
+  
+  .footer { margin-top: 18px; text-align: center; font-size: 11px; color: #3d4563; letter-spacing: 0.5px; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <div>
+      <div class="company-section">
+        <span class="company">Linkers Industries</span>
+        <span class="code">LNKS · NASDAQ</span>
+      </div>
+      <div class="industry">电气设备零部件 · 工业 · 马来西亚 · 微盘股</div>
+    </div>
+    <div class="badge">卖出/规避</div>
+  </div>
+
+  <div class="rating-section">
+    <div class="rating-item">
+      <div class="rating-label">赛 道</div>
+      <div class="stars">★★☆☆☆</div>
+      <div class="rating-value">传统线束代工，竞争激烈</div>
+    </div>
+    <div class="rating-item">
+      <div class="rating-label">公 司</div>
+      <div class="stars">★☆☆☆☆</div>
+      <div class="rating-value">连年亏损，收入下滑</div>
+    </div>
+    <div class="rating-item">
+      <div class="rating-label">价 格</div>
+      <div class="stars">★☆☆☆☆</div>
+      <div class="rating-value">极度稀释，无安全边际</div>
+    </div>
+  </div>
+
+  <div class="price-section">
+    <div class="price-item highlight">
+      <div class="price-label">当前价格</div>
+      <div class="price-value red">$1.35</div>
+      <div class="price-sub">-4.93% (2026-05-11)</div>
+    </div>
+    <div class="price-item">
+      <div class="price-label">52周范围</div>
+      <div class="price-value orange">$1.35 - $420</div>
+      <div class="price-sub">跌幅 -99.7%</div>
+    </div>
+    <div class="price-item">
+      <div class="price-label">市值(估计)</div>
+      <div class="price-value orange">~$216万</div>
+      <div class="price-sub">160万股(逆拆后)</div>
+    </div>
+    <div class="price-item">
+      <div class="price-label">风险等级</div>
+      <div class="price-value" style="color:#ff1744">极高</div>
+      <div class="price-sub">退市风险+极度稀释</div>
+    </div>
+  </div>
+
+  <div class="data-section">
+    <div class="data-item">
+      <div class="data-label">FY2025营收</div>
+      <div class="data-value">RM20.6M</div>
+      <div class="data-growth">▼ -8.8% YoY</div>
+    </div>
+    <div class="data-item">
+      <div class="data-label">FY2025净亏损</div>
+      <div class="data-value">-RM4.93M</div>
+      <div class="data-growth">▼ 恶化</div>
+    </div>
+    <div class="data-item">
+      <div class="data-label">净资产收益率</div>
+      <div class="data-value">-13.0%</div>
+    </div>
+  </div>
+
+  <div class="cashflow-section">
+    <div style="text-align:center;">
+      <div class="cf-label">经营现金流(H1 FY2026)</div>
+      <div class="cf-value cf-negative">-RM2.11M</div>
+      <div style="font-size:11px;color:#5a6380;margin-top:2px;">6个月截至2025.12</div>
+    </div>
+    <div style="text-align:center;">
+      <div class="cf-label">毛利率(FY2025)</div>
+      <div class="cf-value cf-negative">8.8%</div>
+      <div style="font-size:11px;color:#5a6380;margin-top:2px;">持续压缩</div>
+    </div>
+    <div style="text-align:center;">
+      <div class="cf-label">现金余额</div>
+      <div class="cf-value cf-positive">RM17.5M</div>
+      <div style="font-size:11px;color:#5a6380;margin-top:2px;">~$4.3M USD</div>
+    </div>
+  </div>
+
+  <div class="data-section" style="margin-bottom:20px;">
+    <div class="data-item">
+      <div class="data-label">PE Ratio</div>
+      <div class="data-value">N/A</div>
+    </div>
+    <div class="data-item">
+      <div class="data-label">PB(估计)</div>
+      <div class="data-value">~0.25x</div>
+    </div>
+    <div class="data-item">
+      <div class="data-label">二次增发价</div>
+      <div class="value" style="font-size:20px;font-weight:700;color:#ff5252">$0.693/股</div>
+    </div>
+  </div>
+
+  <div class="masters-section">
+    <div class="masters-label">十大师共识投票</div>
+    <div class="masters-votes">
+      <div class="vote vote-buy"><div class="vote-count">0</div><div class="vote-label">买入</div></div>
+      <div class="vote vote-hold"><div class="vote-count">0</div><div class="vote-label">持有</div></div>
+      <div class="vote vote-sell"><div class="vote-count">10</div><div class="vote-label">卖出/规避</div></div>
+    </div>
+  </div>
+
+  <div class="footer">Stock Invest Master v3.7.1 · 数据截至 2026-05-11 · AI分析仅供参考，不构成投资建议</div>
+</div>
+</body>
+</html>

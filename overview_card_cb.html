@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { background: #1a1a2e; font-family: 'Segoe UI', Arial, Helvetica, sans-serif; color: #e0e0e0; display: flex; justify-content: center; padding: 20px; }
+.card { width: 840px; background: linear-gradient(135deg, #16213e, #1a1a2e); border: 1px solid #0f3460; border-radius: 16px; padding: 32px; }
+.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.company-name { font-size: 28px; font-weight: bold; color: #e94560; }
+.ticker { font-size: 18px; color: #53a8b6; margin-left: 12px; }
+.market { font-size: 14px; color: #888; border: 1px solid #333; padding: 4px 12px; border-radius: 4px; }
+.stars { display: flex; gap: 24px; margin: 16px 0; }
+.star-item { text-align: center; flex: 1; }
+.star-label { font-size: 14px; color: #aaa; margin-bottom: 4px; }
+.star-value { font-size: 22px; color: #ffd700; }
+.rating-box { background: #0f3460; border-radius: 10px; padding: 16px; margin: 16px 0; display: flex; justify-content: space-between; align-items: center; }
+.rating-main { text-align: center; }
+.rating-label { font-size: 14px; color: #aaa; }
+.rating-value { font-size: 26px; font-weight: bold; color: #ff6b35; }
+.price-info { text-align: center; }
+.price-current { font-size: 24px; color: #4ecca3; font-weight: bold; }
+.price-target { font-size: 13px; color: #aaa; }
+.safety { text-align: center; }
+.safety-value { font-size: 20px; color: #e94560; font-weight: bold; }
+.data-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 16px 0; }
+.data-item { background: rgba(15, 52, 96, 0.5); border-radius: 8px; padding: 10px; text-align: center; }
+.data-label { font-size: 11px; color: #888; margin-bottom: 4px; }
+.data-value { font-size: 16px; font-weight: bold; }
+.up { color: #4ecca3; }
+.down { color: #e94560; }
+.neutral { color: #ffd700; }
+.cashflow { display: flex; gap: 12px; margin: 12px 0; }
+.cf-item { flex: 1; text-align: center; background: rgba(15, 52, 96, 0.3); border-radius: 8px; padding: 10px; }
+.cf-label { font-size: 11px; color: #888; }
+.cf-value { font-size: 15px; font-weight: bold; }
+.consensus { background: #0f3460; border-radius: 10px; padding: 14px; margin-top: 12px; display: flex; justify-content: space-between; align-items: center; }
+.consensus-title { font-size: 14px; color: #aaa; }
+.consensus-result { font-size: 16px; }
+.buy-count { color: #4ecca3; font-weight: bold; }
+.hold-count { color: #ffd700; font-weight: bold; }
+.sell-count { color: #e94560; font-weight: bold; }
+.risk-badge { font-size: 13px; padding: 3px 10px; border-radius: 4px; }
+.risk-high { background: #e94560; color: #fff; }
+.sub-info { display:flex; justify-content:space-between; margin:12px 0; font-size:13px; color:#aaa; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <div>
+      <span class="company-name">Cerebras Systems</span>
+      <span class="ticker">CB</span>
+    </div>
+    <span class="market">NASDAQ</span>
+  </div>
+  
+  <div class="stars">
+    <div class="star-item"><div class="star-label">Sector</div><div class="star-value">&#9733;&#9733;&#9733;&#9733;&#9734;</div></div>
+    <div class="star-item"><div class="star-label">Company</div><div class="star-value">&#9733;&#9733;&#9733;&#9734;&#9734;</div></div>
+    <div class="star-item"><div class="star-label">Price</div><div class="star-value">&#9733;&#9733;&#9734;&#9734;&#9734;</div></div>
+  </div>
+
+  <div class="rating-box">
+    <div class="rating-main">
+      <div class="rating-label">Rating</div>
+      <div class="rating-value">WATCH</div>
+    </div>
+    <div class="price-info">
+      <div class="price-current">$69.50</div>
+      <div class="price-target">Target $78.50 | Margin: Insufficient</div>
+    </div>
+    <div class="safety">
+      <div class="rating-label">Risk</div>
+      <div class="safety-value"><span class="risk-badge risk-high">HIGH</span></div>
+    </div>
+  </div>
+
+  <div class="sub-info">
+    <div>EV/Sales: 31x | 13F: New institutional positions | Insider: Only programmed sales</div>
+  </div>
+
+  <div class="data-grid">
+    <div class="data-item"><div class="data-label">Market Cap</div><div class="data-value">$9.6B</div></div>
+    <div class="data-item"><div class="data-label">FY25 Revenue</div><div class="data-value up">$312M +104%</div></div>
+    <div class="data-item"><div class="data-label">Net Loss</div><div class="data-value down">-$458M</div></div>
+    <div class="data-item"><div class="data-label">Gross Margin</div><div class="data-value neutral">36.5%</div></div>
+    <div class="data-item"><div class="data-label">Cash</div><div class="data-value up">$685M</div></div>
+    <div class="data-item"><div class="data-label">G42 Revenue %</div><div class="data-value down">52%</div></div>
+    <div class="data-item"><div class="data-label">Short Interest</div><div class="data-value down">18.5%</div></div>
+    <div class="data-item"><div class="data-label">Analysts</div><div class="data-value">8B/3H/1S</div></div>
+    <div class="data-item"><div class="data-label">Cash Runway</div><div class="data-value neutral">4-5 Qtrs</div></div>
+  </div>
+
+  <div class="cashflow">
+    <div class="cf-item"><div class="cf-label">Operating CF</div><div class="cf-value down">Deeply Negative</div></div>
+    <div class="cf-item"><div class="cf-label">Investing CF</div><div class="cf-value down">High CapEx</div></div>
+    <div class="cf-item"><div class="cf-label">Financing CF</div><div class="cf-value up">IPO $410M</div></div>
+  </div>
+
+  <div class="consensus">
+    <div class="consensus-title">10 Masters Consensus</div>
+    <div class="consensus-result">
+      <span class="buy-count">2 Buy</span> / 
+      <span class="hold-count">4 Watch</span> / 
+      <span class="sell-count">4 Avoid</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>

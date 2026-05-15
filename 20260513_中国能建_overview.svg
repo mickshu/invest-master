@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="500" viewBox="0 0 840 500">
+<defs>
+  <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" style="stop-color:#16213e"/>
+    <stop offset="100%" style="stop-color:#0f3460"/>
+  </linearGradient>
+  <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+    <feDropShadow dx="0" dy="8" stdDeviation="12" flood-opacity="0.5"/>
+  </filter>
+</defs>
+<rect width="840" height="500" rx="16" fill="url(#bg)" filter="url(#shadow)"/>
+<!-- Header -->
+<text x="32" y="52" font-family="system-ui,-apple-system,sans-serif" font-size="30" font-weight="700" fill="#fff">中国能建</text>
+<text x="32" y="76" font-family="system-ui,-apple-system,sans-serif" font-size="14" fill="#8892b0">601868.SH / 03996.HK  A+H双上市</text>
+<rect x="620" y="28" width="188" height="36" rx="18" fill="#e94560"/>
+<text x="714" y="51" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">A:3.32元 H:1.35HKD</text>
+<!-- Divider -->
+<line x1="32" y1="92" x2="808" y2="92" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+<!-- Stars -->
+<text x="32" y="124" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#8892b0">赛道</text>
+<text x="70" y="124" font-family="system-ui,-apple-system,sans-serif" font-size="18" fill="#ffd700">★★★</text><text x="120" y="124" font-family="system-ui,-apple-system,sans-serif" font-size="18" fill="#555">☆☆</text>
+<text x="200" y="124" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#8892b0">公司</text>
+<text x="238" y="124" font-family="system-ui,-apple-system,sans-serif" font-size="18" fill="#ffd700">★★★</text><text x="288" y="124" font-family="system-ui,-apple-system,sans-serif" font-size="18" fill="#555">☆☆</text>
+<text x="360" y="124" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#8892b0">价格</text>
+<text x="398" y="124" font-family="system-ui,-apple-system,sans-serif" font-size="18" fill="#ffd700">★★</text><text x="438" y="124" font-family="system-ui,-apple-system,sans-serif" font-size="18" fill="#555">☆☆☆</text>
+<!-- Rating badge -->
+<rect x="640" y="104" width="120" height="36" rx="8" fill="#e94560"/>
+<text x="700" y="128" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle">观望</text>
+<!-- Data Grid 3x2 -->
+<!-- Row 1 -->
+<rect x="32" y="152" width="250" height="64" rx="8" fill="rgba(255,255,255,0.05)"/>
+<text x="157" y="174" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#8892b0" text-anchor="middle">PE（静态）</text>
+<text x="157" y="200" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="600" fill="#ffa502" text-anchor="middle">25.84</text>
+<rect x="294" y="152" width="250" height="64" rx="8" fill="rgba(255,255,255,0.05)"/>
+<text x="419" y="174" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#8892b0" text-anchor="middle">PB</text>
+<text x="419" y="200" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="600" fill="#fff" text-anchor="middle">1.17</text>
+<rect x="556" y="152" width="250" height="64" rx="8" fill="rgba(255,255,255,0.05)"/>
+<text x="681" y="174" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#8892b0" text-anchor="middle">ROE</text>
+<text x="681" y="200" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="600" fill="#ff4757" text-anchor="middle">3.89%</text>
+<!-- Row 2 -->
+<rect x="32" y="226" width="250" height="64" rx="8" fill="rgba(255,255,255,0.05)"/>
+<text x="157" y="248" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#8892b0" text-anchor="middle">总市值</text>
+<text x="157" y="274" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="600" fill="#fff" text-anchor="middle">1469亿</text>
+<rect x="294" y="226" width="250" height="64" rx="8" fill="rgba(255,255,255,0.05)"/>
+<text x="419" y="248" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#8892b0" text-anchor="middle">营收(2025)</text>
+<text x="419" y="274" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="600" fill="#fff" text-anchor="middle">4529亿</text>
+<rect x="556" y="226" width="250" height="64" rx="8" fill="rgba(255,255,255,0.05)"/>
+<text x="681" y="248" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#8892b0" text-anchor="middle">净利增速</text>
+<text x="681" y="274" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="600" fill="#ff4757" text-anchor="middle">-30.4%</text>
+<!-- Cashflow -->
+<rect x="32" y="300" width="774" height="56" rx="8" fill="rgba(255,255,255,0.05)"/>
+<text x="130" y="320" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#8892b0" text-anchor="middle">经营现金流</text>
+<text x="130" y="342" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="600" fill="#2ed573" text-anchor="middle">+115.5亿</text>
+<text x="320" y="320" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#8892b0" text-anchor="middle">投资现金流</text>
+<text x="320" y="342" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="600" fill="#ff4757" text-anchor="middle">-441.4亿</text>
+<text x="510" y="320" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#8892b0" text-anchor="middle">融资现金流</text>
+<text x="510" y="342" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="600" fill="#2ed573" text-anchor="middle">+335.9亿</text>
+<text x="700" y="320" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#8892b0" text-anchor="middle">自由现金流</text>
+<text x="700" y="342" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="600" fill="#ff4757" text-anchor="middle">-325.9亿</text>
+<!-- Bottom -->
+<rect x="32" y="370" width="774" height="56" rx="8" fill="rgba(255,255,255,0.05)"/>
+<rect x="48" y="382" width="140" height="32" rx="6" fill="rgba(255,165,2,0.2)"/>
+<text x="118" y="404" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="600" fill="#ffa502" text-anchor="middle">⚠ 风险:中高</text>
+<text x="410" y="404" font-family="system-ui,-apple-system,sans-serif" font-size="14" fill="#8892b0" text-anchor="middle">十大师共识：</text>
+<text x="520" y="404" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="600" fill="#e94560" text-anchor="middle">0买入 / 3持有 / 7不买或卖出</text>
+<!-- AH Premium -->
+<text x="32" y="460" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#8892b0">AH溢价约146%  |  股息率3.40%  |  换手率4.54%  |  毛利率3.97%</text>
+</svg>

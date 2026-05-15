@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="500" viewBox="0 0 840 500">
+<defs>
+  <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%" style="stop-color:#16213e"/>
+    <stop offset="100%" style="stop-color:#0f3460"/>
+  </linearGradient>
+  <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+    <feDropShadow dx="0" dy="8" stdDeviation="12" flood-opacity="0.5"/>
+  </filter>
+</defs>
+<rect width="840" height="500" rx="16" fill="url(#bg)" filter="url(#shadow)"/>
+<!-- Header -->
+<text x="32" y="52" font-family="system-ui,-apple-system,sans-serif" font-size="30" font-weight="700" fill="#fff">Datang Power</text>
+<text x="32" y="76" font-family="system-ui,-apple-system,sans-serif" font-size="14" fill="#8892b0">601991.SH / 00991.HK  A+H Dual Listed</text>
+<rect x="540" y="28" width="268" height="36" rx="18" fill="#e94560"/>
+<text x="674" y="51" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="600" fill="#fff" text-anchor="middle">A:6.70(+10%) H:3.24(-3.3%)</text>
+<!-- Divider -->
+<line x1="32" y1="92" x2="808" y2="92" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+<!-- Stars -->
+<text x="32" y="124" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#8892b0">Sector</text>
+<text x="82" y="124" font-family="system-ui,-apple-system,sans-serif" font-size="18" fill="#ffd700">★★★★</text><text x="142" y="124" font-family="system-ui,-apple-system,sans-serif" font-size="18" fill="#555">☆</text>
+<text x="200" y="124" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#8892b0">Company</text>
+<text x="272" y="124" font-family="system-ui,-apple-system,sans-serif" font-size="18" fill="#ffd700">★★★</text><text x="322" y="124" font-family="system-ui,-apple-system,sans-serif" font-size="18" fill="#555">☆☆</text>
+<text x="360" y="124" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#8892b0">Price</text>
+<text x="414" y="124" font-family="system-ui,-apple-system,sans-serif" font-size="18" fill="#ffd700">★★★</text><text x="464" y="124" font-family="system-ui,-apple-system,sans-serif" font-size="18" fill="#555">☆☆</text>
+<!-- Rating badge -->
+<rect x="640" y="104" width="120" height="36" rx="8" fill="#ffa502"/>
+<text x="700" y="128" font-family="system-ui,-apple-system,sans-serif" font-size="18" font-weight="700" fill="#fff" text-anchor="middle">HOLD</text>
+<!-- Data Grid 3x2 -->
+<!-- Row 1 -->
+<rect x="32" y="152" width="250" height="64" rx="8" fill="rgba(255,255,255,0.05)"/>
+<text x="157" y="174" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#8892b0" text-anchor="middle">PE (TTM)</text>
+<text x="157" y="200" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="600" fill="#ffa502" text-anchor="middle">15.42</text>
+<rect x="294" y="152" width="250" height="64" rx="8" fill="rgba(255,255,255,0.05)"/>
+<text x="419" y="174" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#8892b0" text-anchor="middle">PB</text>
+<text x="419" y="200" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="600" fill="#fff" text-anchor="middle">3.37</text>
+<rect x="556" y="152" width="250" height="64" rx="8" fill="rgba(255,255,255,0.05)"/>
+<text x="681" y="174" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#8892b0" text-anchor="middle">Div Yield</text>
+<text x="681" y="200" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="600" fill="#2ed573" text-anchor="middle">6.65%</text>
+<!-- Row 2 -->
+<rect x="32" y="226" width="250" height="64" rx="8" fill="rgba(255,255,255,0.05)"/>
+<text x="157" y="248" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#8892b0" text-anchor="middle">Mkt Cap</text>
+<text x="157" y="274" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="600" fill="#fff" text-anchor="middle">1240B CNY</text>
+<rect x="294" y="226" width="250" height="64" rx="8" fill="rgba(255,255,255,0.05)"/>
+<text x="419" y="248" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#8892b0" text-anchor="middle">Revenue</text>
+<text x="419" y="274" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="600" fill="#fff" text-anchor="middle">1213B</text>
+<rect x="556" y="226" width="250" height="64" rx="8" fill="rgba(255,255,255,0.05)"/>
+<text x="681" y="248" font-family="system-ui,-apple-system,sans-serif" font-size="12" fill="#8892b0" text-anchor="middle">Net Profit YoY</text>
+<text x="681" y="274" font-family="system-ui,-apple-system,sans-serif" font-size="20" font-weight="600" fill="#2ed573" text-anchor="middle">+63.9%</text>
+<!-- Cashflow -->
+<rect x="32" y="300" width="774" height="56" rx="8" fill="rgba(255,255,255,0.05)"/>
+<text x="130" y="320" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#8892b0" text-anchor="middle">Operating CF</text>
+<text x="130" y="342" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="600" fill="#2ed573" text-anchor="middle">+378.4B</text>
+<text x="320" y="320" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#8892b0" text-anchor="middle">Investing CF</text>
+<text x="320" y="342" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="600" fill="#ff4757" text-anchor="middle">-264.6B</text>
+<text x="510" y="320" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#8892b0" text-anchor="middle">Financing CF</text>
+<text x="510" y="342" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="600" fill="#ff4757" text-anchor="middle">-97.0B</text>
+<text x="700" y="320" font-family="system-ui,-apple-system,sans-serif" font-size="11" fill="#8892b0" text-anchor="middle">Free CF</text>
+<text x="700" y="342" font-family="system-ui,-apple-system,sans-serif" font-size="16" font-weight="600" fill="#2ed573" text-anchor="middle">+113.8B</text>
+<!-- Bottom -->
+<rect x="32" y="370" width="774" height="56" rx="8" fill="rgba(255,255,255,0.05)"/>
+<rect x="48" y="382" width="140" height="32" rx="6" fill="rgba(46,213,115,0.2)"/>
+<text x="118" y="404" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="600" fill="#2ed573" text-anchor="middle">Risk: Medium</text>
+<text x="410" y="404" font-family="system-ui,-apple-system,sans-serif" font-size="14" fill="#8892b0" text-anchor="middle">10 Masters Consensus:</text>
+<text x="600" y="404" font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="600" fill="#2ed573" text-anchor="middle">4 Buy / 4 Hold / 2 Pass</text>
+<!-- AH Premium -->
+<text x="32" y="460" font-family="system-ui,-apple-system,sans-serif" font-size="13" fill="#8892b0">AH Premium ~107%  |  Debt Ratio 69%  |  Turnover 5.51%  |  Profit: 13.7B -> 73.9B (3yr 5x)</text>
+</svg>

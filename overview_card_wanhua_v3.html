@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  width: 840px;
+  background: #0f1724;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  color: #e2e8f0;
+  padding: 24px;
+}
+.card {
+  background: #162032;
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px;
+  overflow: hidden;
+}
+.header {
+  background: linear-gradient(135deg, #1a365d 0%, #2d3748 100%);
+  padding: 20px 28px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.company { font-size: 28px; font-weight: 700; color: #f0f0f0; }
+.ticker { font-size: 14px; color: #94a3b8; margin-top: 4px; }
+.market-badge {
+  background: #2563eb;
+  color: white;
+  padding: 6px 14px;
+  border-radius: 20px;
+  font-size: 13px;
+  font-weight: 600;
+}
+.stars {
+  display: flex;
+  justify-content: space-around;
+  padding: 18px 28px;
+  background: rgba(255,255,255,0.03);
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.star-item { text-align: center; }
+.star-label { font-size: 13px; color: #94a3b8; margin-bottom: 6px; }
+.star-value { font-size: 22px; color: #fbbf24; letter-spacing: 2px; }
+.rating-section {
+  display: flex;
+  justify-content: space-between;
+  padding: 18px 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.rating-box { text-align: center; flex: 1; }
+.rating-label { font-size: 12px; color: #94a3b8; margin-bottom: 4px; }
+.rating-value { font-size: 18px; font-weight: 700; }
+.buy { color: #ef4444; }
+.data-section {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 12px;
+  padding: 18px 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+.data-item {
+  background: rgba(255,255,255,0.03);
+  padding: 10px 14px;
+  border-radius: 8px;
+}
+.data-label { font-size: 11px; color: #64748b; margin-bottom: 4px; }
+.data-value { font-size: 16px; font-weight: 600; }
+.up { color: #ef4444; }
+.down { color: #22c55e; }
+.cashflow {
+  display: flex;
+  justify-content: space-around;
+  padding: 14px 28px;
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+}
+.cf-item { text-align: center; }
+.cf-label { font-size: 11px; color: #64748b; margin-bottom: 4px; }
+.cf-value { font-size: 14px; font-weight: 600; }
+.masters {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  padding: 16px 28px;
+}
+.masters-label { font-size: 14px; color: #94a3b8; }
+.masters-result { font-size: 16px; font-weight: 700; }
+.consensus {
+  display: flex;
+  justify-content: space-around;
+  padding: 0 28px 18px;
+}
+.consensus-item { text-align: center; }
+.consensus-count { font-size: 24px; font-weight: 700; }
+.consensus-label { font-size: 11px; color: #64748b; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <div>
+      <div class="company">WANHUA CHEMICAL 万华化学</div>
+      <div class="ticker">600309.SH · SSE</div>
+    </div>
+    <div class="market-badge">A-SHARE</div>
+  </div>
+  <div class="stars">
+    <div class="star-item"><div class="star-label">Industry</div><div class="star-value">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div>
+    <div class="star-item"><div class="star-label">Company</div><div class="star-value">&#9733;&#9733;&#9733;&#9733;&#9733;</div></div>
+    <div class="star-item"><div class="star-label">Price</div><div class="star-value">&#9733;&#9733;&#9733;&#9733;&#9734;</div></div>
+  </div>
+  <div class="rating-section">
+    <div class="rating-box"><div class="rating-label">Rating</div><div class="rating-value buy">BUY</div></div>
+    <div class="rating-box"><div class="rating-label">Target</div><div class="rating-value">95-105 CNY</div></div>
+    <div class="rating-box"><div class="rating-label">Current</div><div class="rating-value">82.72 CNY</div></div>
+    <div class="rating-box"><div class="rating-label">Margin</div><div class="rating-value up">15-27%</div></div>
+  </div>
+  <div class="data-section">
+    <div class="data-item"><div class="data-label">PE (TTM)</div><div class="data-value">19.67x</div></div>
+    <div class="data-item"><div class="data-label">PB</div><div class="data-value">2.32x</div></div>
+    <div class="data-item"><div class="data-label">ROE</div><div class="data-value">15.8%</div></div>
+    <div class="data-item"><div class="data-label">Market Cap</div><div class="data-value">259B CNY</div></div>
+    <div class="data-item"><div class="data-label">Revenue 2024</div><div class="data-value up">179B +10.5%</div></div>
+    <div class="data-item"><div class="data-label">Net Profit 2024</div><div class="data-value down">10.8B -5.1%</div></div>
+  </div>
+  <div class="cashflow">
+    <div class="cf-item"><div class="cf-label">Operating CF</div><div class="cf-value up">+214.5B</div></div>
+    <div class="cf-item"><div class="cf-label">Investing CF</div><div class="cf-value down">-202.2B</div></div>
+    <div class="cf-item"><div class="cf-label">Free CF</div><div class="cf-value up">+12.3B Turned +</div></div>
+    <div class="cf-item"><div class="cf-label">Northbound</div><div class="cf-value up">3.82%</div></div>
+  </div>
+  <div class="masters">
+    <div class="masters-label">10 Masters Consensus</div>
+    <div class="consensus">
+      <div class="consensus-item"><div class="consensus-count" style="color:#ef4444">7</div><div class="consensus-label">BUY</div></div>
+      <div class="consensus-item"><div class="consensus-count" style="color:#fbbf24">2</div><div class="consensus-label">HOLD</div></div>
+      <div class="consensus-item"><div class="consensus-count" style="color:#22c55e">1</div><div class="consensus-label">AVOID</div></div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

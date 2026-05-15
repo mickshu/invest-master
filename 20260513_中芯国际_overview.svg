@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="840" height="485" viewBox="0 0 840 485">
+  <defs>
+    <linearGradient id="hdr" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a2a3a"/>
+      <stop offset="100%" style="stop-color:#0d1f2d"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="840" height="480" rx="12" fill="#0f1923" stroke="#1e3a5f" stroke-width="1"/>
+  
+  <!-- Header -->
+  <rect x="0" y="0" width="840" height="70" rx="12" fill="url(#hdr)"/>
+  <text x="30" y="35" font-family="system-ui, sans-serif" fill="#ffffff" font-size="28" font-weight="bold">SMIC 中芯国际</text>
+  <text x="30" y="58" font-family="system-ui, sans-serif" fill="#8899aa" font-size="13">SSE 688981 | HKEX 00981 | Data: 2026-05-13</text>
+  <rect x="680" y="18" width="130" height="32" rx="16" fill="#1e3a5f"/>
+  <text x="745" y="40" font-family="system-ui, sans-serif" text-anchor="middle" font-size="14" fill="#66ccff" font-weight="bold">A+H Share</text>
+  <line x1="0" y1="70" x2="840" y2="70" stroke="#1e3a5f" stroke-width="1"/>
+  
+  <!-- Stars row -->
+  <rect x="0" y="70" width="840" height="50" fill="#111d28"/>
+  <text x="140" y="93" font-family="system-ui, sans-serif" fill="#6688aa" font-size="12" text-anchor="middle">Track</text>
+  <text x="140" y="115" font-family="system-ui, sans-serif" fill="#ffcc00" font-size="22" text-anchor="middle">★★★★☆</text>
+  <text x="420" y="93" font-family="system-ui, sans-serif" fill="#6688aa" font-size="12" text-anchor="middle">Company</text>
+  <text x="420" y="115" font-family="system-ui, sans-serif" fill="#ffcc00" font-size="22" text-anchor="middle">★★★☆☆</text>
+  <text x="700" y="93" font-family="system-ui, sans-serif" fill="#6688aa" font-size="12" text-anchor="middle">Price</text>
+  <text x="700" y="115" font-family="system-ui, sans-serif" fill="#ffcc00" font-size="22" text-anchor="middle">★★☆☆☆</text>
+  <line x1="0" y1="120" x2="840" y2="120" stroke="#1e3a5f" stroke-width="1"/>
+  
+  <!-- Rating bar -->
+  <rect x="0" y="120" width="840" height="45" fill="#0d1820"/>
+  <text x="30" y="138" font-family="system-ui, sans-serif" fill="#6688aa" font-size="11">Rating</text>
+  <text x="30" y="158" font-family="system-ui, sans-serif" fill="#ffaa00" font-size="15" font-weight="bold">HOLD</text>
+  <text x="180" y="138" font-family="system-ui, sans-serif" fill="#6688aa" font-size="11">Price (A)</text>
+  <text x="180" y="158" font-family="system-ui, sans-serif" fill="#ffffff" font-size="15" font-weight="bold">¥121.86</text>
+  <text x="340" y="138" font-family="system-ui, sans-serif" fill="#6688aa" font-size="11">Target</text>
+  <text x="340" y="158" font-family="system-ui, sans-serif" fill="#00cc66" font-size="15" font-weight="bold">¥60-80</text>
+  <text x="500" y="138" font-family="system-ui, sans-serif" fill="#6688aa" font-size="11">Margin of Safety</text>
+  <text x="500" y="158" font-family="system-ui, sans-serif" fill="#ff4444" font-size="15" font-weight="bold">INSUFFICIENT</text>
+  <text x="720" y="138" font-family="system-ui, sans-serif" fill="#6688aa" font-size="11">Risk</text>
+  <text x="720" y="158" font-family="system-ui, sans-serif" fill="#ff4444" font-size="15" font-weight="bold">HIGH</text>
+  <line x1="0" y1="165" x2="840" y2="165" stroke="#1e3a5f" stroke-width="1"/>
+  
+  <!-- Data grid -->
+  <rect x="0" y="165" width="840" height="165" fill="#111d28"/>
+  
+  <!-- Row 1 -->
+  <text x="140" y="195" font-family="system-ui, sans-serif" fill="#6688aa" font-size="11" text-anchor="middle">Market Cap</text>
+  <text x="140" y="225" font-family="system-ui, sans-serif" fill="#ffffff" font-size="20" font-weight="bold" text-anchor="middle">976.5B</text>
+  <text x="420" y="195" font-family="system-ui, sans-serif" fill="#6688aa" font-size="11" text-anchor="middle">PE (Static)</text>
+  <text x="420" y="225" font-family="system-ui, sans-serif" fill="#ff4444" font-size="20" font-weight="bold" text-anchor="middle">146x</text>
+  <text x="700" y="195" font-family="system-ui, sans-serif" fill="#6688aa" font-size="11" text-anchor="middle">PE (Dynamic)</text>
+  <text x="700" y="225" font-family="system-ui, sans-serif" fill="#ff4444" font-size="20" font-weight="bold" text-anchor="middle">98x</text>
+  
+  <!-- Row 2 -->
+  <text x="140" y="260" font-family="system-ui, sans-serif" fill="#6688aa" font-size="11" text-anchor="middle">PB</text>
+  <text x="140" y="290" font-family="system-ui, sans-serif" fill="#ffaa00" font-size="20" font-weight="bold" text-anchor="middle">6.47x</text>
+  <text x="420" y="260" font-family="system-ui, sans-serif" fill="#6688aa" font-size="11" text-anchor="middle">ROE</text>
+  <text x="420" y="290" font-family="system-ui, sans-serif" fill="#ff4444" font-size="20" font-weight="bold" text-anchor="middle">-0.8%</text>
+  <text x="700" y="260" font-family="system-ui, sans-serif" fill="#6688aa" font-size="11" text-anchor="middle">Gross Margin</text>
+  <text x="700" y="290" font-family="system-ui, sans-serif" fill="#ff4444" font-size="20" font-weight="bold" text-anchor="middle">12.1%</text>
+  
+  <!-- Row 3 -->
+  <text x="140" y="315" font-family="system-ui, sans-serif" fill="#6688aa" font-size="10" text-anchor="middle">Revenue 2025</text>
+  <text x="140" y="332" font-family="system-ui, sans-serif" fill="#00cc66" font-size="14" font-weight="bold" text-anchor="middle">67.3B +16.5%</text>
+  <text x="420" y="315" font-family="system-ui, sans-serif" fill="#6688aa" font-size="10" text-anchor="middle">Net Profit 2025</text>
+  <text x="420" y="332" font-family="system-ui, sans-serif" fill="#00cc66" font-size="14" font-weight="bold" text-anchor="middle">5.0B +36.3%</text>
+  <text x="700" y="315" font-family="system-ui, sans-serif" fill="#6688aa" font-size="10" text-anchor="middle">Free Cash Flow</text>
+  <text x="700" y="332" font-family="system-ui, sans-serif" fill="#ff4444" font-size="14" font-weight="bold" text-anchor="middle">-22.1B</text>
+  
+  <line x1="0" y1="350" x2="840" y2="350" stroke="#1e3a5f" stroke-width="0.5"/>
+  
+  <!-- Cashflow -->
+  <rect x="0" y="350" width="840" height="65" fill="#0d1820"/>
+  <text x="140" y="375" font-family="system-ui, sans-serif" fill="#6688aa" font-size="11" text-anchor="middle">Operating CF</text>
+  <text x="140" y="400" font-family="system-ui, sans-serif" fill="#00cc66" font-size="18" font-weight="bold" text-anchor="middle">+20.1B</text>
+  
+  <text x="420" y="375" font-family="system-ui, sans-serif" fill="#6688aa" font-size="11" text-anchor="middle">Investing CF</text>
+  <text x="420" y="400" font-family="system-ui, sans-serif" fill="#ff4444" font-size="18" font-weight="bold" text-anchor="middle">-42.1B</text>
+  
+  <text x="700" y="375" font-family="system-ui, sans-serif" fill="#6688aa" font-size="11" text-anchor="middle">Financing CF</text>
+  <text x="700" y="400" font-family="system-ui, sans-serif" fill="#00cc66" font-size="18" font-weight="bold" text-anchor="middle">+17.5B</text>
+  
+  <line x1="0" y1="415" x2="840" y2="415" stroke="#1e3a5f" stroke-width="1"/>
+  
+  <!-- Masters consensus -->
+  <rect x="0" y="415" width="840" height="65" fill="#111d28"/>
+  <text x="420" y="442" font-family="system-ui, sans-serif" fill="#6688aa" font-size="12" text-anchor="middle">10 Masters Consensus</text>
+  <text x="420" y="468" font-family="system-ui, sans-serif" fill="#e0e0e0" font-size="18" text-anchor="middle">
+    <tspan fill="#00cc66">1 Buy</tspan>
+    <tspan fill="#e0e0e0"> / </tspan>
+    <tspan fill="#ffaa00">4 Hold</tspan>
+    <tspan fill="#e0e0e0"> / </tspan>
+    <tspan fill="#ff4444">5 Don't Buy</tspan>
+  </text>
+  <text x="420" y="480" font-family="system-ui, sans-serif" fill="#8899aa" font-size="10" text-anchor="middle">Graham:No | Buffett:No | Lynch:No | Fisher:Hold | Munger:Too Hard | Marks:Wait | Duan:No | Dalio:Alloc | Soros:Try | Simons:No</text>
+</svg>

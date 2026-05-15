@@ -1,0 +1,93 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 520" width="840" height="520">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#16213e"/>
+      <stop offset="100%" style="stop-color:#0f3460"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="840" height="520" rx="16" fill="url(#bg)" stroke="rgba(255,255,255,0.1)" stroke-width="1"/>
+  
+  <!-- Header -->
+  <text x="30" y="50" fill="#fff" font-family="sans-serif" font-size="28" font-weight="bold">海兰信</text>
+  <text x="155" y="50" fill="#aaa" font-family="sans-serif" font-size="18">300065.SZ</text>
+  <rect x="620" y="30" width="70" height="26" rx="4" fill="#e94560"/>
+  <text x="655" y="48" fill="#fff" font-family="sans-serif" font-size="13" text-anchor="middle">创业板</text>
+  <rect x="700" y="30" width="80" height="26" rx="4" fill="#533483"/>
+  <text x="740" y="48" fill="#fff" font-family="sans-serif" font-size="13" text-anchor="middle">海洋装备</text>
+  
+  <!-- Stars -->
+  <rect x="30" y="70" width="250" height="60" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="155" y="95" fill="#aaa" font-family="sans-serif" font-size="13" text-anchor="middle">赛道</text>
+  <text x="155" y="118" fill="#ffd700" font-family="sans-serif" font-size="22" text-anchor="middle">★★★☆☆</text>
+  
+  <rect x="295" y="70" width="250" height="60" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="420" y="95" fill="#aaa" font-family="sans-serif" font-size="13" text-anchor="middle">公司</text>
+  <text x="420" y="118" fill="#ffd700" font-family="sans-serif" font-size="22" text-anchor="middle">★★☆☆☆</text>
+  
+  <rect x="560" y="70" width="250" height="60" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="685" y="95" fill="#aaa" font-family="sans-serif" font-size="13" text-anchor="middle">价格</text>
+  <text x="685" y="118" fill="#ffd700" font-family="sans-serif" font-size="22" text-anchor="middle">★☆☆☆☆</text>
+  
+  <!-- Rating Box -->
+  <rect x="30" y="150" width="780" height="80" rx="10" fill="rgba(233,69,96,0.15)" stroke="#e94560" stroke-width="1"/>
+  <text x="50" y="185" fill="#e94560" font-family="sans-serif" font-size="32" font-weight="bold">⚠ 观望</text>
+  <text x="50" y="215" fill="#aaa" font-family="sans-serif" font-size="13">核心风险：</text>
+  <rect x="125" y="200" width="30" height="20" rx="4" fill="#ff4444"/>
+  <text x="140" y="215" fill="#fff" font-family="sans-serif" font-size="13" text-anchor="middle" font-weight="bold">高</text>
+  
+  <text x="790" y="185" fill="#fff" font-family="sans-serif" font-size="28" text-anchor="end">当前价 23.33 元</text>
+  <text x="790" y="210" fill="#e94560" font-family="sans-serif" font-size="13" text-anchor="end">安全边际：-35%（当前高于内在价值）</text>
+  <text x="790" y="228" fill="#aaa" font-family="sans-serif" font-size="12" text-anchor="end">目标区间：12.00-15.00</text>
+  
+  <!-- Data Grid Row 1 -->
+  <rect x="30" y="250" width="250" height="55" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="155" y="270" fill="#888" font-family="sans-serif" font-size="11" text-anchor="middle">PE(TTM)</text>
+  <text x="155" y="295" fill="#ff4444" font-family="sans-serif" font-size="18" text-anchor="middle" font-weight="bold">2,351</text>
+  
+  <rect x="295" y="250" width="250" height="55" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="420" y="270" fill="#888" font-family="sans-serif" font-size="11" text-anchor="middle">PB</text>
+  <text x="420" y="295" fill="#ff4444" font-family="sans-serif" font-size="18" text-anchor="middle" font-weight="bold">9.58</text>
+  
+  <rect x="560" y="250" width="250" height="55" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="685" y="270" fill="#888" font-family="sans-serif" font-size="11" text-anchor="middle">ROE(加权)</text>
+  <text x="685" y="295" fill="#ff4444" font-family="sans-serif" font-size="18" text-anchor="middle" font-weight="bold">0.10%</text>
+  
+  <!-- Data Grid Row 2 -->
+  <rect x="30" y="315" width="250" height="55" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="155" y="335" fill="#888" font-family="sans-serif" font-size="11" text-anchor="middle">总市值</text>
+  <text x="155" y="360" fill="#fff" font-family="sans-serif" font-size="18" text-anchor="middle" font-weight="bold">168亿</text>
+  
+  <rect x="295" y="315" width="250" height="55" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="420" y="335" fill="#888" font-family="sans-serif" font-size="11" text-anchor="middle">换手率</text>
+  <text x="420" y="360" fill="#fff" font-family="sans-serif" font-size="18" text-anchor="middle" font-weight="bold">9.98%</text>
+  
+  <rect x="560" y="315" width="250" height="55" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="685" y="335" fill="#888" font-family="sans-serif" font-size="11" text-anchor="middle">25年营收</text>
+  <text x="685" y="360" fill="#00cc66" font-family="sans-serif" font-size="18" text-anchor="middle" font-weight="bold">7.16亿</text>
+  
+  <!-- Data Grid Row 3 -->
+  <rect x="30" y="380" width="250" height="55" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="155" y="400" fill="#888" font-family="sans-serif" font-size="11" text-anchor="middle">25年归母净利</text>
+  <text x="155" y="425" fill="#00cc66" font-family="sans-serif" font-size="18" text-anchor="middle" font-weight="bold">4029万</text>
+  
+  <rect x="295" y="380" width="250" height="55" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="420" y="400" fill="#888" font-family="sans-serif" font-size="11" text-anchor="middle">25年扣非净利</text>
+  <text x="420" y="425" fill="#ff4444" font-family="sans-serif" font-size="18" text-anchor="middle" font-weight="bold">1170万</text>
+  
+  <rect x="560" y="380" width="250" height="55" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="685" y="400" fill="#888" font-family="sans-serif" font-size="11" text-anchor="middle">26Q1营收同比</text>
+  <text x="685" y="425" fill="#ff4444" font-family="sans-serif" font-size="18" text-anchor="middle" font-weight="bold">-73.6%</text>
+  
+  <!-- Consensus -->
+  <rect x="30" y="450" width="780" height="55" rx="8" fill="rgba(255,255,255,0.05)"/>
+  <text x="420" y="473" fill="#aaa" font-family="sans-serif" font-size="13" text-anchor="middle">十大师共识：</text>
+  <text x="420" y="498" font-family="sans-serif" font-size="18" text-anchor="middle">
+    <tspan fill="#00cc66">0买入</tspan>
+    <tspan fill="#aaa"> / </tspan>
+    <tspan fill="#ffd700">5持有</tspan>
+    <tspan fill="#aaa"> / </tspan>
+    <tspan fill="#ff4444">5卖出</tspan>
+  </text>
+</svg>

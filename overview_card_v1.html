@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  background: #1a1a2e;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 520px;
+  font-family: "PingFang SC", "Microsoft YaHei", -apple-system, sans-serif;
+}
+.card {
+  width: 840px;
+  background: linear-gradient(135deg, #16213e 0%, #0f3460 100%);
+  border-radius: 16px;
+  padding: 32px;
+  color: #e0e0e0;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+.company { font-size: 28px; font-weight: 700; color: #fff; }
+.code { font-size: 14px; color: #8892b0; margin-top: 4px; }
+.market { background: #e94560; color: #fff; padding: 6px 16px; border-radius: 20px; font-size: 13px; font-weight: 600; }
+.rating-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 16px 20px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 12px;
+}
+.stars { display: flex; gap: 24px; }
+.star-item { text-align: center; }
+.star-label { font-size: 13px; color: #8892b0; margin-bottom: 4px; }
+.star-value { font-size: 20px; }
+.rating-badge {
+  background: #e94560;
+  color: #fff;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 700;
+}
+.data-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin-bottom: 20px;
+}
+.data-item {
+  background: rgba(255,255,255,0.05);
+  padding: 12px 16px;
+  border-radius: 8px;
+  text-align: center;
+}
+.data-label { font-size: 12px; color: #8892b0; margin-bottom: 4px; }
+.data-value { font-size: 18px; font-weight: 600; color: #fff; }
+.data-value.red { color: #ff4757; }
+.data-value.green { color: #2ed573; }
+.data-value.yellow { color: #ffa502; }
+.cashflow-row {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 20px;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+  justify-content: space-around;
+}
+.cf-item { text-align: center; }
+.cf-label { font-size: 12px; color: #8892b0; }
+.cf-value { font-size: 16px; font-weight: 600; }
+.cf-value.pos { color: #2ed573; }
+.cf-value.neg { color: #ff4757; }
+.bottom-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: rgba(255,255,255,0.05);
+  border-radius: 8px;
+}
+.risk-badge {
+  background: rgba(255,165,2,0.2);
+  color: #ffa502;
+  padding: 6px 14px;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.consensus { font-size: 14px; color: #8892b0; }
+.consensus strong { color: #e94560; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <div>
+      <div class="company">中国能建</div>
+      <div class="code">601868.SH / 03996.HK · A+H双上市</div>
+    </div>
+    <div class="market">A股 3.32元 | 港股 1.35HKD</div>
+  </div>
+  <div class="rating-row">
+    <div class="stars">
+      <div class="star-item"><div class="star-label">赛道</div><div class="star-value">★★★☆☆</div></div>
+      <div class="star-item"><div class="star-label">公司</div><div class="star-value">★★★☆☆</div></div>
+      <div class="star-item"><div class="star-label">价格</div><div class="star-value">★★☆☆☆</div></div>
+    </div>
+    <div class="rating-badge">观望</div>
+  </div>
+  <div class="data-grid">
+    <div class="data-item"><div class="data-label">PE（静态）</div><div class="data-value yellow">25.84</div></div>
+    <div class="data-item"><div class="data-label">PB</div><div class="data-value">1.17</div></div>
+    <div class="data-item"><div class="data-label">ROE</div><div class="data-value red">3.89%</div></div>
+    <div class="data-item"><div class="data-label">总市值</div><div class="data-value">1469亿</div></div>
+    <div class="data-item"><div class="data-label">营收（2025）</div><div class="data-value">4529亿</div></div>
+    <div class="data-item"><div class="data-label">净利增速</div><div class="data-value red">-30.4%</div></div>
+  </div>
+  <div class="cashflow-row">
+    <div class="cf-item"><div class="cf-label">经营现金流</div><div class="cf-value pos">+115.5亿</div></div>
+    <div class="cf-item"><div class="cf-label">投资现金流</div><div class="cf-value neg">-441.4亿</div></div>
+    <div class="cf-item"><div class="cf-label">融资现金流</div><div class="cf-value pos">+335.9亿</div></div>
+    <div class="cf-item"><div class="cf-label">自由现金流</div><div class="cf-value neg">-325.9亿</div></div>
+  </div>
+  <div class="bottom-row">
+    <div class="risk-badge">⚠️ 核心风险：中高</div>
+    <div class="consensus">十大师共识：<strong>0买入 / 3持有 / 7不买或卖出</strong></div>
+  </div>
+</div>
+</body>
+</html>

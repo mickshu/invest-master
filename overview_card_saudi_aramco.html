@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Noto Sans SC', sans-serif;
+    background: #0f1923;
+    color: #e0e0e0;
+    width: 840px;
+    padding: 30px;
+  }
+  .card {
+    background: #1a2632;
+    border-radius: 16px;
+    padding: 28px 32px;
+    border: 1px solid #2a3a4a;
+  }
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #2a3a4a;
+  }
+  .company {
+    font-size: 28px;
+    font-weight: 900;
+    color: #fff;
+  }
+  .ticker {
+    font-size: 16px;
+    color: #7ab8ff;
+    font-weight: 700;
+    background: #1e3a5f;
+    padding: 6px 14px;
+    border-radius: 8px;
+  }
+  .market {
+    font-size: 14px;
+    color: #888;
+  }
+  .ratings {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 20px;
+  }
+  .rating-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .rating-label {
+    font-size: 13px;
+    color: #999;
+    margin-bottom: 4px;
+  }
+  .stars {
+    color: #ffd700;
+    font-size: 20px;
+  }
+  .score {
+    font-size: 26px;
+    font-weight: 900;
+    color: #fff;
+    margin-top: 8px;
+  }
+  .badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .badge-buy { background: #1b5e20; color: #a5d6a7; }
+  .badge-risk { background: #b71c1c; color: #ef9a9a; }
+  .data-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    margin: 20px 0;
+  }
+  .data-item {
+    background: #243447;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+  }
+  .data-label {
+    font-size: 11px;
+    color: #777;
+    margin-bottom: 4px;
+  }
+  .data-value {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+  }
+  .data-value.green { color: #66bb6a; }
+  .data-value.red { color: #ef5350; }
+  .data-value.yellow { color: #ffd740; }
+  .section-title {
+    font-size: 13px;
+    color: #7ab8ff;
+    font-weight: 700;
+    margin: 16px 0 8px;
+    text-transform: uppercase;
+  }
+  .cashflow {
+    display: flex;
+    gap: 16px;
+    margin-bottom: 16px;
+  }
+  .cf-item {
+    flex: 1;
+    background: #243447;
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+  }
+  .cf-label {
+    font-size: 11px;
+    color: #777;
+    margin-bottom: 4px;
+  }
+  .cf-value {
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .cf-positive { color: #66bb6a; }
+  .cf-negative { color: #ef5350; }
+  .consensus {
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #2a3a4a;
+  }
+  .consensus-item {
+    text-align: center;
+  }
+  .consensus-num {
+    font-size: 24px;
+    font-weight: 900;
+  }
+  .consensus-label {
+    font-size: 12px;
+    color: #888;
+  }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <div>
+      <div class="company">🛢️ 沙特阿美 Saudi Aramco</div>
+      <div class="market">沙特 Tadawul · 能源 · 综合石油</div>
+    </div>
+    <div class="ticker">2222.SR</div>
+  </div>
+
+  <div class="ratings">
+    <div class="rating-item">
+      <div class="rating-label">赛道</div>
+      <div class="stars">★★★☆☆</div>
+      <div class="score">3.0</div>
+    </div>
+    <div class="rating-item">
+      <div class="rating-label">公司</div>
+      <div class="stars">★★★★★</div>
+      <div class="score">5.0</div>
+    </div>
+    <div class="rating-item">
+      <div class="rating-label">价格</div>
+      <div class="stars">★★★☆☆</div>
+      <div class="score">3.5</div>
+    </div>
+    <div class="rating-item">
+      <div class="rating-label">评级</div>
+      <div class="badge badge-buy">持有 / 逢低加仓</div>
+    </div>
+    <div class="rating-item">
+      <div class="rating-label">风险</div>
+      <div class="badge badge-risk">中高</div>
+    </div>
+  </div>
+
+  <div class="section-title">📊 关键数据</div>
+  <div class="data-grid">
+    <div class="data-item">
+      <div class="data-label">股价 (SAR)</div>
+      <div class="data-value">31.60</div>
+    </div>
+    <div class="data-item">
+      <div class="data-label">总市值</div>
+      <div class="data-value">$1.68T</div>
+    </div>
+    <div class="data-item">
+      <div class="data-label">PE (TTM)</div>
+      <div class="data-value yellow">14.0x</div>
+    </div>
+    <div class="data-item">
+      <div class="data-label">PB</div>
+      <div class="data-value">1.62x</div>
+    </div>
+    <div class="data-item">
+      <div class="data-label">ROE</div>
+      <div class="data-value green">14.7%</div>
+    </div>
+    <div class="data-item">
+      <div class="data-label">营收 (FY24)</div>
+      <div class="data-value">$385B</div>
+    </div>
+    <div class="data-item">
+      <div class="data-label">净利润 (FY24)</div>
+      <div class="data-value green">$120B</div>
+    </div>
+    <div class="data-item">
+      <div class="data-label">股息率</div>
+      <div class="data-value green">4.35%</div>
+    </div>
+  </div>
+
+  <div class="section-title">💰 三大现金流 (FY2024, USD)</div>
+  <div class="cashflow">
+    <div class="cf-item">
+      <div class="cf-label">经营现金流</div>
+      <div class="cf-value cf-positive">+$1,080亿</div>
+    </div>
+    <div class="cf-item">
+      <div class="cf-label">投资现金流</div>
+      <div class="cf-value cf-negative">-$291亿</div>
+    </div>
+    <div class="cf-item">
+      <div class="cf-label">自由现金流</div>
+      <div class="cf-value cf-positive">+$789亿</div>
+    </div>
+  </div>
+
+  <div class="section-title">🗳️ 十大师共识投票</div>
+  <div class="consensus">
+    <div class="consensus-item">
+      <div class="consensus-num" style="color:#66bb6a">0</div>
+      <div class="consensus-label">买入</div>
+    </div>
+    <div class="consensus-item">
+      <div class="consensus-num" style="color:#ffd740">9</div>
+      <div class="consensus-label">持有</div>
+    </div>
+    <div class="consensus-item">
+      <div class="consensus-num" style="color:#42a5f5">1</div>
+      <div class="consensus-label">等待</div>
+    </div>
+    <div class="consensus-item">
+      <div class="consensus-num" style="color:#ef5350">0</div>
+      <div class="consensus-label">卖出</div>
+    </div>
+  </div>
+</div>
+</body>
+</html>

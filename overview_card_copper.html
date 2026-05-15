@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700;900&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Noto Sans SC', sans-serif; background: #0f1923; color: #e0e0e0; width: 840px; padding: 30px; }
+  .card { background: #1a2632; border-radius: 16px; padding: 28px 32px; border: 1px solid #2a3a4a; }
+  .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; padding-bottom: 16px; border-bottom: 1px solid #2a3a4a; }
+  .company { font-size: 28px; font-weight: 900; color: #fff; }
+  .ticker { font-size: 14px; color: #7ab8ff; font-weight: 700; background: #1e3a5f; padding: 6px 14px; border-radius: 8px; }
+  .market { font-size: 14px; color: #888; }
+  .ratings { display: flex; gap: 30px; margin-bottom: 20px; }
+  .rating-item { display: flex; flex-direction: column; align-items: center; }
+  .rating-label { font-size: 13px; color: #999; margin-bottom: 4px; }
+  .stars { color: #ffd700; font-size: 20px; }
+  .score { font-size: 26px; font-weight: 900; color: #fff; margin-top: 8px; }
+  .badge { display: inline-block; padding: 6px 16px; border-radius: 20px; font-size: 15px; font-weight: 700; }
+  .badge-buy { background: #1b5e20; color: #a5d6a7; }
+  .badge-risk { background: #e65100; color: #ffcc80; }
+  .data-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; }
+  .data-item { background: #243447; border-radius: 10px; padding: 12px; text-align: center; }
+  .data-label { font-size: 11px; color: #777; margin-bottom: 4px; }
+  .data-value { font-size: 18px; font-weight: 700; color: #fff; }
+  .data-value.green { color: #66bb6a; }
+  .data-value.yellow { color: #ffd740; }
+  .section-title { font-size: 13px; color: #7ab8ff; font-weight: 700; margin: 16px 0 8px; }
+  .table-section { background: #243447; border-radius: 10px; padding: 16px; margin: 12px 0; }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; }
+  th { color: #7ab8ff; text-align: left; padding: 6px 8px; border-bottom: 1px solid #3a4a5a; }
+  td { color: #e0e0e0; padding: 6px 8px; border-bottom: 1px solid #2a3a4a; }
+  td.green { color: #66bb6a; font-weight: 700; }
+  td.yellow { color: #ffd740; font-weight: 700; }
+  .consensus { display: flex; justify-content: center; gap: 24px; margin-top: 16px; padding-top: 12px; border-top: 1px solid #2a3a4a; }
+  .consensus-item { text-align: center; }
+  .consensus-num { font-size: 24px; font-weight: 900; }
+  .consensus-label { font-size: 12px; color: #888; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <div>
+      <div class="company">🔶 铜板块深度分析</div>
+      <div class="market">A股+港股 · 有色金属 · 电气化核心赛道</div>
+    </div>
+    <div class="ticker">600362 / 601899 / 603993</div>
+  </div>
+
+  <div class="ratings">
+    <div class="rating-item">
+      <div class="rating-label">赛道</div>
+      <div class="stars">★★★★☆</div>
+      <div class="score">4.0</div>
+    </div>
+    <div class="rating-item">
+      <div class="rating-label">公司</div>
+      <div class="stars">★★★★★</div>
+      <div class="score">5.0</div>
+    </div>
+    <div class="rating-item">
+      <div class="rating-label">价格</div>
+      <div class="stars">★★★★☆</div>
+      <div class="score">4.0</div>
+    </div>
+    <div class="rating-item">
+      <div class="rating-label">评级</div>
+      <div class="badge badge-buy">买入</div>
+    </div>
+    <div class="rating-item">
+      <div class="rating-label">风险</div>
+      <div class="badge badge-risk">中</div>
+    </div>
+  </div>
+
+  <div class="section-title">📊 核心公司对比</div>
+  <div class="table-section">
+    <table>
+      <tr><th>公司</th><th>PE</th><th>ROE</th><th>毛利率</th><th>铜产量</th><th>评级</th></tr>
+      <tr><td>紫金矿业</td><td class="yellow">15-18x</td><td class="green">15-20%</td><td class="green">12-15%</td><td>~100万吨</td><td class="green">首选</td></tr>
+      <tr><td>洛阳钼业</td><td class="yellow">12-15x</td><td class="green">12-15%</td><td class="green">10-12%</td><td>~40万吨</td><td class="green">弹性</td></tr>
+      <tr><td>江西铜业</td><td class="yellow">12-15x</td><td>8-10%</td><td>2-3%</td><td>~200万吨</td><td>防御</td></tr>
+    </table>
+  </div>
+
+  <div class="section-title">📈 铜市场核心数据</div>
+  <div class="data-grid">
+    <div class="data-item"><div class="data-label">LME铜价</div><div class="data-value">$10,500</div></div>
+    <div class="data-item"><div class="data-label">沪铜(SHFE)</div><div class="data-value">~80,000</div></div>
+    <div class="data-item"><div class="data-label">2025缺口</div><div class="data-value green">20-40万吨</div></div>
+    <div class="data-item"><div class="data-label">2027缺口</div><div class="data-value green">>100万吨</div></div>
+    <div class="data-item"><div class="data-label">高盛目标</div><div class="data-value green">$15,000</div></div>
+    <div class="data-item"><div class="data-label">TC/RC</div><div class="data-value yellow">历史极低</div></div>
+    <div class="data-item"><div class="data-label">EV单车用铜</div><div class="data-value">~80kg</div></div>
+    <div class="data-item"><div class="data-label">AI电力需求</div><div class="data-value green">3-5x</div></div>
+  </div>
+
+  <div class="section-title">🗳️ 十大师共识投票</div>
+  <div class="consensus">
+    <div class="consensus-item"><div class="consensus-num" style="color:#66bb6a">8</div><div class="consensus-label">买入</div></div>
+    <div class="consensus-item"><div class="consensus-num" style="color:#ffd740">2</div><div class="consensus-label">持有</div></div>
+    <div class="consensus-item"><div class="consensus-num" style="color:#42a5f5">0</div><div class="consensus-label">等待</div></div>
+    <div class="consensus-item"><div class="consensus-num" style="color:#ef5350">0</div><div class="consensus-label">卖出</div></div>
+  </div>
+</div>
+</body>
+</html>

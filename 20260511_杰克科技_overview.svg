@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 840 520" width="840" height="520">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="100%" style="stop-color:#16213e"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="840" height="520" fill="url(#bg)" rx="12"/>
+  
+  <!-- Header -->
+  <rect width="840" height="70" fill="#0f3460" rx="12"/>
+  <rect y="60" width="840" height="10" fill="#0f3460"/>
+  <text x="30" y="45" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="26" fill="#e94560" font-weight="bold">杰克科技 603337.SH</text>
+  <text x="650" y="45" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="16" fill="#a0aec0">A股 · 工业缝纫机全球龙头</text>
+  
+  <!-- 三维评分 -->
+  <text x="30" y="105" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="15" fill="#a0aec0">赛道:</text>
+  <text x="75" y="105" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="18" fill="#e2e8f0">★★★★</text><text x="160" y="105" font-size="18" fill="#4a5568">☆</text>
+  
+  <text x="220" y="105" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="15" fill="#a0aec0">公司:</text>
+  <text x="270" y="105" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="18" fill="#e2e8f0">★★★★★</text>
+  
+  <text x="400" y="105" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="15" fill="#a0aec0">价格:</text>
+  <text x="445" y="105" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="18" fill="#e2e8f0">★★★★</text><text x="515" y="105" font-size="18" fill="#4a5568">☆</text>
+  
+  <!-- 投资评级区域 -->
+  <rect x="25" y="120" width="790" height="80" rx="8" fill="#1a365d"/>
+  <text x="45" y="150" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="16" fill="#a0aec0">投资评级</text>
+  <text x="45" y="180" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="28" fill="#48bb78" font-weight="bold">增持</text>
+  
+  <text x="200" y="150" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="14" fill="#a0aec0">当前价</text>
+  <text x="200" y="180" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="28" fill="#e2e8f0">43.35</text>
+  
+  <text x="330" y="150" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="14" fill="#a0aec0">目标价</text>
+  <text x="330" y="180" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="28" fill="#48bb78">49.50</text>
+  
+  <text x="460" y="150" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="14" fill="#a0aec0">安全边际</text>
+  <text x="460" y="180" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="28" fill="#ed8936">14%</text>
+  
+  <text x="580" y="150" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="14" fill="#a0aec0">核心风险</text>
+  <text x="580" y="180" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="28" fill="#ed8936">中</text>
+  
+  <!-- 关键数据 -->
+  <rect x="25" y="215" width="250" height="115" rx="8" fill="#1a365d"/>
+  <text x="40" y="245" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="13" fill="#a0aec0">PE (动态)</text>
+  <text x="40" y="280" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="24" fill="#e2e8f0">23.82</text>
+  <text x="140" y="245" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="13" fill="#a0aec0">PB</text>
+  <text x="140" y="280" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="24" fill="#e2e8f0">3.84</text>
+  <text x="40" y="310" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="13" fill="#a0aec0">ROE 18.9%</text>
+  <text x="155" y="310" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="13" fill="#a0aec0">EPS 1.87</text>
+  
+  <rect x="295" y="215" width="250" height="115" rx="8" fill="#1a365d"/>
+  <text x="310" y="245" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="13" fill="#a0aec0">总市值</text>
+  <text x="310" y="280" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="24" fill="#e2e8f0">206.5亿</text>
+  <text x="310" y="310" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="13" fill="#a0aec0">52周: 37.6~46.0</text>
+  
+  <rect x="565" y="215" width="250" height="115" rx="8" fill="#1a365d"/>
+  <text x="580" y="245" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="13" fill="#a0aec0">2024营收</text>
+  <text x="580" y="280" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="24" fill="#e2e8f0">61.8亿</text>
+  <text x="580" y="310" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="13" fill="#a0aec0">净利8.9亿 +11.2%</text>
+  
+  <!-- 三大现金流 -->
+  <rect x="25" y="345" width="790" height="55" rx="8" fill="#1a365d"/>
+  <text x="40" y="370" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="13" fill="#a0aec0">经营现金流:</text>
+  <text x="155" y="370" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="18" fill="#48bb78">+9.2亿</text>
+  <text x="280" y="370" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="13" fill="#a0aec0">投资现金流:</text>
+  <text x="395" y="370" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="18" fill="#f56565">-3.5亿</text>
+  <text x="500" y="370" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="13" fill="#a0aec0">融资现金流:</text>
+  <text x="615" y="370" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="18" fill="#f56565">-2.9亿</text>
+  
+  <!-- 十大师共识 -->
+  <rect x="25" y="415" width="790" height="85" rx="8" fill="#1a365d"/>
+  <text x="40" y="445" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="15" fill="#a0aec0">十大师共识:</text>
+  <text x="160" y="445" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="16" fill="#48bb78">6 买入</text>
+  <text x="280" y="445" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="16" fill="#ecc94b">3 持有</text>
+  <text x="400" y="445" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="16" fill="#a0aec0">1 观望</text>
+  <text x="520" y="445" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="16" fill="#f56565">0 卖出</text>
+  <text x="40" y="475" font-family="PingFang SC,Microsoft YaHei,sans-serif" font-size="12" fill="#718096">北向资金近20日净流入3860万 | 机构持仓122家 | 18/20券商评级买入/增持</text>
+</svg>

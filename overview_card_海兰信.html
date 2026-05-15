@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: "PingFang SC", "Microsoft YaHei", "Noto Sans SC", -apple-system, sans-serif; background: #1a1a2e; padding: 20px; display: flex; justify-content: center; }
+.card { width: 820px; background: linear-gradient(135deg, #16213e 0%, #0f3460 100%); border-radius: 16px; padding: 32px; color: #e0e0e0; border: 1px solid rgba(255,255,255,0.1); }
+.header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.header h1 { font-size: 28px; color: #fff; }
+.header .tag { background: #e94560; color: #fff; padding: 4px 12px; border-radius: 4px; font-size: 13px; }
+.header .tag2 { background: #533483; padding: 4px 12px; border-radius: 4px; font-size: 13px; margin-left: 8px; }
+.stars { display: flex; gap: 24px; margin-bottom: 16px; }
+.star-item { flex: 1; text-align: center; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; }
+.star-item .label { font-size: 13px; color: #aaa; margin-bottom: 4px; }
+.star-item .score { font-size: 22px; color: #ffd700; }
+.rating-box { display: flex; justify-content: space-between; background: rgba(233,69,96,0.15); border: 1px solid #e94560; border-radius: 10px; padding: 16px; margin-bottom: 16px; }
+.rating-left { text-align: left; }
+.rating-left .main { font-size: 32px; color: #e94560; font-weight: bold; }
+.rating-left .sub { font-size: 13px; color: #aaa; margin-top: 4px; }
+.rating-right { text-align: right; }
+.rating-right .price { font-size: 28px; color: #fff; }
+.rating-right .margin { font-size: 13px; color: #e94560; margin-top: 4px; }
+.data-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-bottom: 16px; }
+.data-item { background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; text-align: center; }
+.data-item .label { font-size: 11px; color: #888; margin-bottom: 4px; }
+.data-item .value { font-size: 16px; color: #fff; font-weight: bold; }
+.data-item .value.red { color: #ff4444; }
+.data-item .value.green { color: #00cc66; }
+.cashflow { display: flex; gap: 12px; margin-bottom: 16px; }
+.cf-item { flex: 1; background: rgba(255,255,255,0.05); padding: 10px; border-radius: 8px; text-align: center; }
+.cf-item .label { font-size: 11px; color: #888; margin-bottom: 4px; }
+.cf-item .value { font-size: 14px; font-weight: bold; }
+.cf-item .value.positive { color: #00cc66; }
+.cf-item .value.negative { color: #ff4444; }
+.consensus { text-align: center; background: rgba(255,255,255,0.05); padding: 12px; border-radius: 8px; }
+.consensus .label { font-size: 13px; color: #aaa; margin-bottom: 6px; }
+.consensus .result { font-size: 18px; }
+.consensus .buy { color: #00cc66; }
+.consensus .hold { color: #ffd700; }
+.consensus .sell { color: #ff4444; }
+.risk-badge { display: inline-block; background: #ff4444; color: #fff; padding: 2px 10px; border-radius: 4px; font-size: 13px; font-weight: bold; }
+</style>
+</head>
+<body>
+<div class="card">
+  <div class="header">
+    <h1>海兰信 <span style="color:#aaa;font-size:18px;">300065.SZ</span></h1>
+    <div><span class="tag">创业板</span><span class="tag2">海洋装备</span></div>
+  </div>
+
+  <div class="stars">
+    <div class="star-item"><div class="label">赛道</div><div class="score">★★★☆☆</div></div>
+    <div class="star-item"><div class="label">公司</div><div class="score">★★☆☆☆</div></div>
+    <div class="star-item"><div class="label">价格</div><div class="score">★☆☆☆☆</div></div>
+  </div>
+
+  <div class="rating-box">
+    <div class="rating-left">
+      <div class="main">⚠️ 观望</div>
+      <div class="sub">核心风险：<span class="risk-badge">高</span></div>
+    </div>
+    <div class="rating-right">
+      <div class="price">当前价 23.33 元</div>
+      <div class="margin">安全边际：-35%~（当前高于内在价值）</div>
+      <div style="font-size:12px;color:#aaa;margin-top:2px;">目标区间：12.00-15.00</div>
+    </div>
+  </div>
+
+  <div class="data-grid">
+    <div class="data-item"><div class="label">PE(TTM)</div><div class="value red">2,351</div></div>
+    <div class="data-item"><div class="label">PB</div><div class="value red">9.58</div></div>
+    <div class="data-item"><div class="label">ROE(加权)</div><div class="value red">0.10%</div></div>
+    <div class="data-item"><div class="label">总市值</div><div class="value">168亿</div></div>
+    <div class="data-item"><div class="label">换手率</div><div class="value">9.98%</div></div>
+    <div class="data-item"><div class="label">25年营收</div><div class="value green">7.16亿</div></div>
+  </div>
+
+  <div class="data-grid" style="grid-template-columns: repeat(3, 1fr);">
+    <div class="data-item"><div class="label">25年归母净利</div><div class="value green">4029万</div></div>
+    <div class="data-item"><div class="label">25年扣非净利</div><div class="value red">1170万</div></div>
+    <div class="data-item"><div class="label">26Q1营收同比</div><div class="value red">-73.6%</div></div>
+  </div>
+
+  <div class="cashflow">
+    <div class="cf-item"><div class="label">经营现金流</div><div class="value positive">+1.29亿</div></div>
+    <div class="cf-item"><div class="label">投资现金流</div><div class="value negative">-3.37亿</div></div>
+    <div class="cf-item"><div class="label">融资现金流</div><div class="value positive">+1.94亿</div></div>
+  </div>
+
+  <div class="consensus">
+    <div class="label">十大师共识</div>
+    <div class="result">
+      <span class="buy">0买入</span> &nbsp;/&nbsp;
+      <span class="hold">5持有</span> &nbsp;/&nbsp;
+      <span class="sell">5卖出</span>
+    </div>
+  </div>
+</div>
+</body>
+</html>
